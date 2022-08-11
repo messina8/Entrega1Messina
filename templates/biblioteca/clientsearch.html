@@ -1,0 +1,19 @@
+{% extends "biblioteca/formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Clients{% endblock %}
+
+{% block forms %}
+
+    <main class="hoc container clear">
+        <form action="/search/" method="get">
+        <input type="search" name="client_name" id="client_name" placeholder="Client name">
+
+        <input type="submit" value="Search">
+        </form>
+    </main>
+
+    {{ message }}
+
+{% endblock %}

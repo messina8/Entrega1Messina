@@ -1,0 +1,20 @@
+{% extends "biblioteca/formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Clients{% endblock %}
+
+{% block forms %}
+    <main class="hoc container clear">
+        {% if clients %}
+            <p> Search results for: {{ search }}</p>
+            <ul>
+                {% for client in clients %}
+                    <li>{{client.name}}, {{ client.surname }}</li>
+                    <li>{{ client.adress }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {{ message }}
+    </main>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "biblioteca/formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Clients{% endblock %}
+
+{% block forms %}
+
+
+    <main class="hoc container clear">
+
+        <form method="post">{% csrf_token %}
+            {{ message }}
+            {{ form.as_p }}
+
+        <input type="submit" value="Submit">
+        <footer><a href="{% url 'ClientSearch' %}">Search &raquo;</a></footer>
+    </form>
+
+    </main>
+
+{#    <form action="/clients/" method="POST"> {% csrf_token %}#}
+{#        <main class="hoc container clear" >#}
+{#        <div class="one_quarter first">#}
+{#        <fieldset>#}
+{#          <input class="btmspace-15" type="text" value="" placeholder="Name">#}
+{#          <button class="btn" type="submit" value="submit">Submit</button>#}
+{#        </fieldset>#}
+{#        </div>#}
+{#        <div class="one_quarter">#}
+{#            <input class="btmspace-15" type="text" value="" placeholder="Surname">#}
+{#        </div>#}
+{#        <div class="one_quarter">#}
+{#            <input class="btmspace-15" type="text" value="" placeholder="Address">#}
+{#        </div>#}
+{#        <div class="one_quarter">#}
+{#            <input class="btmspace-15" type="text" value="" placeholder="ID">#}
+{#        </div>#}
+{#        </main>#}
+{##}
+{#    </form>#}
+
+{% endblock %}

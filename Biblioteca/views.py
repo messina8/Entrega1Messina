@@ -73,7 +73,7 @@ def invoice(request):
             return HttpResponse('biblioteca/invoice.html', {'message': 'error'})
 
 
-def clientsearch(request):
+def client_search(request):
     return render(request, 'biblioteca/clientsearch.html')
 
 

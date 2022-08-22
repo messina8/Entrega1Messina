@@ -86,3 +86,21 @@ def search(request):
     else:
         message = "No data to search"
     return render(request, 'biblioteca/clientsearch.html', {'message': message})
+
+
+def owned_books(request):
+    pass
+
+
+def to_do(request):
+    pass
+
+
+def time_table(request):
+    pass
+
+
+def user_chat(request):
+    pass
+
+

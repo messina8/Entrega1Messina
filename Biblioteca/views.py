@@ -96,11 +96,14 @@ def to_do(request):
     pass
 
 
-def time_table(request):
+def timetable(request):
     pass
 
 
 def user_chat(request):
     pass
 
+
+def journal(Request):
+    pass
 

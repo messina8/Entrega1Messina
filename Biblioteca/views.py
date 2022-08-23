@@ -1,3 +1,5 @@
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
 from django.shortcuts import render
 from Biblioteca.models import Book, Invoices, Clients
@@ -5,7 +7,8 @@ from Biblioteca.forms import ClientForm, InvoiceForm, BookForm
 
 
 def home(request):
-    return render(request, 'home.html')
+    context = {'welcome_message': 'Welcome to El Rio bookshop management system.'}
+    return render(request, 'home.html', context)
 
 
 def books(request):
@@ -104,6 +107,20 @@ def user_chat(request):
     pass
 
 
-def journal(Request):
+def journal(request):
     pass
 
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.post)
+
+        if form.is_valid():
+            user = form.cleaned_data.get('username')
+            passwrd = form.cleaned_data.get('password')
+
+            user = authenticate(username=user, password=passwrd)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, )

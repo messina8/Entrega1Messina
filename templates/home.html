@@ -47,15 +47,18 @@ Licence URI: https://www.os-templates.com/template-terms
         </li>
         <li><a class="drop" href="#">Productivity</a>
           <ul>
-            <li><a href="#">Time Tables</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
+            <li><a href="{% url 'OwnedBooks' %}">Owned Books</a></li>
+            <li><a href="{% url 'ToDo' %}">To Do</a></li>
+            <li><a href="{% url 'Timetable' %}">Time Tables</a></li>
+            <li><a href="{% url 'Journal' %}">Journal</a></li>
+            <li><a href="{% url 'Chat' %}">Chat</a></li>
+            <li><a class="drop">Legacy</a>
               <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
+                <li><a href="{% url 'Books' %}">Books</a></li>
+                <li><a href="{% url 'Clients' %}">Clients</a></li>
+                <li><a href="{% url 'Invoice' %}">Invoices</a></li>
               </ul>
             </li>
-            <li><a href="#">To Do</a></li>
           </ul>
         </li>
         <li><a href="#">Link Text</a></li>
@@ -72,7 +75,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <article>
       <h3 class="heading">El Rio Management</h3>
-      <p>Welcome to El Rio bookshop management system.</p>
+      <p>{{ welcome_message }}</p>
       <footer>
         <ul class="nospace inline pushright">
           <li><a class="btn" href="#">Log in</a></li>

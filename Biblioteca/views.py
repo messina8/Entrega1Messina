@@ -110,17 +110,3 @@ def user_chat(request):
 def journal(request):
     pass
 
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.post)
-
-        if form.is_valid():
-            user = form.cleaned_data.get('username')
-            passwrd = form.cleaned_data.get('password')
-
-            user = authenticate(username=user, password=passwrd)
-
-            if user is not None:
-                login(request, user)
-
-                return render(request, )

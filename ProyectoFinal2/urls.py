@@ -20,6 +20,8 @@ from Biblioteca import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='Home'),
-    path('management/', include('Biblioteca.urls'))
+    path('management/', include('Biblioteca.urls')),
+    path('user/', include('login.urls')),
+    path('chat/', include('chat.urls')),
 
 ]

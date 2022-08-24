@@ -8,10 +8,10 @@ urlpatterns = [
     path('legacy/invoice/', views.invoice, name='Invoice'),
     path('legacy/clientsearch/', views.client_search, name='ClientSearch'),
     path('legacy/search/', views.search),
-    path('owned_books', views.owned_books, name='OwnedBooks'),
-    path('to_do', views.to_do, name='ToDo'),
-    path('timetable', views.timetable, name='Timetable'),
-    path('chat', views.user_chat, name='Chat'),
-    path('journal', views.journal, name='Journal'),
+    path('owned_books/', views.owned_books, name='OwnedBooks'),
+    path('to_do/', views.to_do, name='ToDo'),
+    path('timetable/', views.timetable, name='Timetable'),
+    path('chat/', views.user_chat, name='Chat'),
+    path('journal/', views.journal, name='Journal'),
 
 ]

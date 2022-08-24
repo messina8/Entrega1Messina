@@ -63,7 +63,11 @@ Licence URI: https://www.os-templates.com/template-terms
         </li>
         <li><a href="#">Link Text</a></li>
         <li><a href="#">Profile</a></li>
-        <li><a href="{% url 'Login' %}">Log In</a></li>
+        {% if not user.is_authenticated %}
+          <li><a href="{% url 'Login' %}">Log In</a></li>
+        {% else %}
+          <li><a href="{% url 'Logout' %}">Log Out</a></li>
+        {% endif %}
       </ul>
       <!-- ################################################################################################ -->
     </nav>
@@ -127,21 +131,21 @@ Licence URI: https://www.os-templates.com/template-terms
         <li class="one_third first">
           <article><a href="{% url 'Books' %}"><i class="fas fa-book-open"></i></a>
             <h6 class="heading">Books</h6>
-            <p>Manage the books from you bookshop(LEGACY)</p>
+            <p>Manage the books from you bookshop (LEGACY FEATURE)</p>
             <footer><a href="{% url 'Books' %}">More Details &raquo;</a></footer>
           </article>
         </li>
         <li class="one_third">
           <article><a href="{% url 'Clients' %}"><i class="fas fa-user"></i></a>
             <h6 class="heading">Clients</h6>
-            <p>Manage the clients from you bookshop(LEGACY)</p>
+            <p>Manage the clients from you bookshop (LEGACY FEATURE)</p>
             <footer><a href="{% url 'Clients' %}">More Details &raquo;</a></footer>
           </article>
         </li>
         <li class="one_third">
           <article><a href="{% url 'Invoice' %}"><i class="fas fa-file-invoice-dollar"></i></a>
             <h6 class="heading">Invoices</h6>
-            <p>Manage the invoices from you bookshop(LEGACY)</p>
+            <p>Manage the invoices from you bookshop (LEGACY FEATURE)</p>
             <footer><a href="{% url 'Invoice' %}">Go &raquo;</a></footer>
           </article>
         </li>
@@ -149,28 +153,28 @@ Licence URI: https://www.os-templates.com/template-terms
           <article><a href="{% url 'OwnedBooks' %}"><i class="fas fa-book"></i></a>
             <h6 class="heading">Owned Books</h6>
             <p>Manage your owned books.</p>
-            <footer><a href="{% url 'OwnedBooks' %}">More Details &raquo;</a></footer>
+            <footer><a href="{% url 'OwnedBooks' %}">Go &raquo;</a></footer>
           </article>
         </li>
         <li class="one_half">
           <article><a href="{% url 'ToDo' %}"><i class="fas fa-clipboard-list"></i></a>
             <h6 class="heading">To Do List</h6>
             <p>Make a simple To Do list. Set times activities and goals..</p>
-            <footer><a href="{% url 'ToDo' %}">More Details &raquo;</a></footer>
+            <footer><a href="{% url 'ToDo' %}">Go &raquo;</a></footer>
           </article>
         </li>
         <li class="one_half first">
           <article><a href="{% url 'Timetable' %}"><i class="fas fa-grip-vertical"></i></a>
             <h6 class="heading">Time Table</h6>
             <p>Manage your daily routine with a simple Time Table.</p>
-            <footer><a href="{% url 'Timetable' %}">More Details &raquo;</a></footer>
+            <footer><a href="{% url 'Timetable' %}">Go &raquo;</a></footer>
           </article>
         </li>
           <li class="one_half">
           <article><a href="{% url 'Journal' %}"><i class="fas fa-pen-fancy"></i></a>
             <h6 class="heading">Journal</h6>
             <p>{% lorem 10 w %}</p>
-            <footer><a href="{% url 'Journal' %}">More Details &raquo;</a></footer>
+            <footer><a href="{% url 'Journal' %}">Go &raquo;</a></footer>
           </article>
         </li>
       </ul>

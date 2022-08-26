@@ -5,11 +5,13 @@ from django.db import models
 
 
 class Message(models.Model):
-    author = models.CharField(max_length=60)
-    message = models.CharField(max_length=300)
-    target = models.CharField(max_length=60)
+    author_id = models.IntegerField()
+    message = models.TextField()
+    target_id = models.IntegerField()
     time = models.DateTimeField(auto_now=True)
 
 
-# class Review(models.Model):
-#     pass
+class Review(models.Model):
+    signature = models.CharField(max_length=80)
+    review = models.TextField()
+    rating = models.IntegerField()

@@ -30,6 +30,7 @@ class OwnedBooks(models.Model):
     theme = models.CharField(max_length=20)
     read = models.BooleanField(default=False)
     read_date = models.DateField()
+    user_id = models.IntegerField()
 
 
 class ToDoItem(models.Model):
@@ -38,8 +39,16 @@ class ToDoItem(models.Model):
     task = models.CharField(max_length=40)
     task_description = models.CharField(max_length=160)
     expiration_date = models.DateTimeField()
+    user_id = models.IntegerField()
 
 
 class TimeTable(models.Model):
     time = models.TimeField(unique=True)
     activity = models.CharField(max_length=40)
+    user_id = models.IntegerField()
+
+
+class JournalEntry(models.Model):
+    user_id = models.IntegerField()
+    date = models.DateField()
+    entry = models.TextField()

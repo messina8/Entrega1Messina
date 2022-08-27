@@ -93,21 +93,21 @@ def search(request):
 
 
 def owned_books(request):
-    pass
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
 def to_do(request):
-    pass
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
 def timetable(request):
-    pass
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
 def user_chat(request):
-    pass
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
 def journal(request):
-    pass
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 

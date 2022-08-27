@@ -62,7 +62,7 @@ Licence URI: https://www.os-templates.com/template-terms
           </ul>
         </li>
         <li><a href="#">Link Text</a></li>
-        <li><a href="#">Profile</a></li>
+        <li><a href="{% url 'Profile' %}">Profile</a></li>
         {% if not user.is_authenticated %}
           <li><a href="{% url 'Login' %}">Log In</a></li>
         {% else %}
@@ -82,8 +82,8 @@ Licence URI: https://www.os-templates.com/template-terms
       <p>{{ welcome_message }}</p>
       <footer>
         <ul class="nospace inline pushright">
-          <li><a class="btn" href="#">Log in</a></li>
-          <li><a class="btn inverse" href="#">Sign in</a></li>
+          <li><a class="btn" href="{% url 'Login' %}">Log in</a></li>
+          <li><a class="btn inverse" href="{% url 'Register' %}">Sign in</a></li>
         </ul>
       </footer>
     </article>
@@ -103,10 +103,10 @@ Licence URI: https://www.os-templates.com/template-terms
         <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>Give us a call:</strong> +54 11 4747 0440</span></div>
       </li>
       <li class="one_quarter">
-        <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Send us a mail:</strong> info@elriosoftware.com</span></div>
+        <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Mail us:</strong> info@elriosoftware.com</span></div>
       </li>
       <li class="one_quarter">
-        <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> Mon. - Sat.:</strong> 09:30am - 19:30pm</span></div>
+        <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> Mon. - Fri.:</strong> 09:30am - 19:30pm</span></div>
       </li>
       <li class="one_quarter">
         <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>Come visit us:</strong> Directions to <a href="https://goo.gl/maps/xt3mFjN9GfcAoPJv7">our location</a></span></div>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as auth_login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 def login(request):
@@ -20,10 +21,14 @@ def login(request):
                 return render(request, 'home.html', {'welcome_message': f'Welcome back, {user}!'})
 
             else:
-                return render(request, "home.html", {'welcome_message': 'Incorrect credentials'})
+                form = AuthenticationForm()
+                return render(request, "login/login.html", {'form': form,
+                                                            'message': 'Incorrect credentials, please try again.'})
 
         else:
-            return render(request, 'home.html', {'welcome_message': 'Incorrect form'})
+            form = AuthenticationForm()
+            return render(request, "login/login.html", {'form': form,
+                                                        'message': 'Incorrect credentials, please try again.'})
 
     form = AuthenticationForm()
 
@@ -39,6 +44,15 @@ def register(request):
             form.save()
             return render(request, 'home.html', {'welcome_message': f'Welcome {username}, enjoy your stay!'})
 
+        else:
+            form = UserCreationForm()
+            return render(request, 'login/login.html', {'form': form, 'message': 'Incorrect data, please try again.'})
+    else:
+        form = UserCreationForm()
 
+    return render(request, 'login/login.html', {'form': form})
+
+
+@login_required()
 def profile(request):
-    pass
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})

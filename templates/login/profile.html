@@ -1,0 +1,24 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Login{% endblock %}
+
+{% block forms %}
+
+  <main class="hoc container clear">
+
+    <div class="sectiontitle">
+      <p class="nospace font-xs">Profile</p>
+      <h6 class="heading">{{ username }}</h6>
+    </div>
+
+    <img class="imgl borderedbox inspace-5" src="../images/demo/imgl.gif" alt="">
+      <p>{{ full_name }}</p>
+      <p>{{ email }}</p>
+      <p>{# espacio para información extra en el futuo #}</p>
+      <footer><a href="{% url 'EditProfile' %}">Edit &raquo;</a></footer>
+
+  </main>
+
+{% endblock %}

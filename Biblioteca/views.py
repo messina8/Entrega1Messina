@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from Biblioteca.models import Book, Invoices, Clients
@@ -89,22 +90,26 @@ def search(request):
     return render(request, 'biblioteca/clientsearch.html', {'message': message})
 
 
+@login_required
 def owned_books(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
+@login_required
 def to_do(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
+@login_required
 def timetable(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
+@login_required
 def user_chat(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
 
+@login_required
 def journal(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
-

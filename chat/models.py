@@ -7,10 +7,10 @@ from django.db import models
 
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name='sender',
-                               on_delete=models.CASCADE)  # should make a function where if both are null, delete
+                               on_delete=models.CASCADE)
     message = models.TextField()
     target = models.ForeignKey(User, related_name='target',
-                               on_delete=models.CASCADE)  # should make a function where if both are null, delete
+                               on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now=True)
 
 

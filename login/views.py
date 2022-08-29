@@ -6,7 +6,7 @@ from django.contrib.auth import login as auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 from login.forms import ProfileUpdate
-from login.models import Profile
+from login.models import Profile, LogHistory
 
 
 def login(request):
@@ -22,6 +22,8 @@ def login(request):
 
             if user is not None:
                 auth_login(request, user)
+                log = LogHistory(user_id=request.user.id, log_in=True)
+                log.save()
 
                 if next_url:
                     return redirect(next_url)
@@ -68,14 +70,15 @@ def profile(request):
         user_data = {'username': request.user.username,
                      'email': request.user.email,
                      'full_name': request.user.first_name + ' ' + request.user.last_name,
-                     'picture': pictures[0].avatar.url
+                     'picture': pictures[0].avatar.url,
+                     'join_date': request.user.date_joined
                      }
     return render(request, 'login/profile.html', user_data)
 
 
 def edit_profile(request):
     user = User.objects.get(username=request.user.username)
-    avatardb = Profile.objects.get(user=user)
+    avatar_db = Profile.objects.get(user=user)
 
     if request.method == 'POST':
         form = ProfileUpdate(request.POST, request.FILES)
@@ -85,12 +88,12 @@ def edit_profile(request):
             user.email = data['mail']  # if data['mail'] is not None else request.user.email
             user.first_name = data['first_name']  # if data['first_name'] is not None else request.user.first_name
             user.last_name = data['last_name']  # if data['last_name'] is not None else request.user.last_name
-            if avatardb is not None:
-                avatardb.avatar=data['avatar']
+            if avatar_db is not None:
+                avatar_db.avatar=data['avatar']
             else:
-                avatardb = Profile(user=user, avatar=data['avatar'])
+                avatar_db = Profile(user=user, avatar=data['avatar'])
             user.save()
-            avatardb.save()
+            avatar_db.save()
 
             return redirect(profile)
 

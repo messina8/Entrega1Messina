@@ -11,6 +11,6 @@ class LogHistory(models.Model):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
     avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
 

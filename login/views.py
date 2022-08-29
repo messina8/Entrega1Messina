@@ -6,6 +6,7 @@ from django.contrib.auth import login as auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 from login.forms import ProfileUpdate
+from login.models import Profile
 
 
 def login(request):
@@ -63,33 +64,41 @@ def register(request):
 def profile(request):
     user_data = {}
     if request.user.is_authenticated:
-
+        pictures = Profile.objects.filter(user=request.user.id)
         user_data = {'username': request.user.username,
                      'email': request.user.email,
                      'full_name': request.user.first_name + ' ' + request.user.last_name,
-                     'picture': ''  # should get avatar
+                     'picture': pictures[0].avatar.url
                      }
     return render(request, 'login/profile.html', user_data)
 
 
 def edit_profile(request):
     user = User.objects.get(username=request.user.username)
+    avatardb = Profile.objects.get(user=user)
 
     if request.method == 'POST':
-        form = ProfileUpdate(request.POST)
+        form = ProfileUpdate(request.POST, request.FILES)
 
         if form.is_valid():
             data = form.cleaned_data
-            user.email = data['mail']
-            user.first_name = data['first_name']
-            user.last_name = data['last_name']
+            user.email = data['mail']  # if data['mail'] is not None else request.user.email
+            user.first_name = data['first_name']  # if data['first_name'] is not None else request.user.first_name
+            user.last_name = data['last_name']  # if data['last_name'] is not None else request.user.last_name
+            if avatardb is not None:
+                avatardb.avatar=data['avatar']
+            else:
+                avatardb = Profile(user=user, avatar=data['avatar'])
             user.save()
+            avatardb.save()
+
             return redirect(profile)
 
         else:
             form = ProfileUpdate()
-            return render(request, 'login/login.html', {'form': form, 'message': 'Incorrect data, please try again.'})
+            return render(request, 'login/profile_update.html', {'form': form,
+                                                                 'message': 'Incorrect data, please try again.'})
     else:
         form = ProfileUpdate()
 
-    return render(request, 'login/login.html', {'form': form})
+    return render(request, 'login/profile_update.html', {'form': form})

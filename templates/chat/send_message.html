@@ -1,0 +1,25 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Books{% endblock %}
+
+
+
+{% block forms %}
+    <main class="hoc container clear">
+        <div id="comments">
+            <h2>Message to {{ target_name }}:</h2>
+            <form method="POST">{% csrf_token %}
+
+
+                <div class="block clear">
+                    {{ form.as_p }}
+
+                    <input type="submit" value="Submit">
+                </div>
+
+            </form>
+        </div>
+    </main>
+{% endblock %}

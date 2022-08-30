@@ -51,7 +51,6 @@ Licence URI: https://www.os-templates.com/template-terms
             <li><a href="{% url 'ToDo' %}">To Do</a></li>
             <li><a href="{% url 'Timetable' %}">Time Tables</a></li>
             <li><a href="{% url 'Journal' %}">Journal</a></li>
-            <li><a href="{% url 'Chat' %}">Chat</a></li>
             <li><a class="drop">Legacy</a>
               <ul>
                 <li><a href="{% url 'Books' %}">Books</a></li>
@@ -62,7 +61,7 @@ Licence URI: https://www.os-templates.com/template-terms
           </ul>
         </li>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'Chat' %}">Messages </a></li>
+        <li><a href="{% url 'Messages' %}">Messages </a></li>
         <li><a href="{% url 'Profile' %}">Profile</a></li>
         {% endif %}
         {% if not user.is_authenticated %}

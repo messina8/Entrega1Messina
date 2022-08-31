@@ -1,0 +1,27 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %} Owned Books {% endblock %}
+
+{% block forms %}
+
+    <main class="hoc container clear">
+    <h1>Books owned by {{ request.user.username }}:</h1>
+
+    {% for book in books %}
+        <ul class="nospace linklist">
+        <li class="one_half first">Title: </li>
+        <li class="one_half">Author:</li>
+
+        <li class="one_quarter first">ISBN:</li>
+        <li class="one_quarter">Theme: </li>
+        <li class="one_quarter">Read: </li>
+        <li class="one_quarter">Read date: </li>
+        </ul>
+    {% endfor %}
+
+    <footer><a href="{% url 'NewBook' %}">New Book &raquo;</a></footer>
+    </main>
+
+{% endblock %}

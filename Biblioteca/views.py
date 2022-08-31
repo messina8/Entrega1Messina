@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
-from Biblioteca.models import Book, Invoices, Clients
-from Biblioteca.forms import ClientForm, InvoiceForm, BookForm
+from django.shortcuts import render, redirect
+from Biblioteca.models import Book, Invoices, Clients, OwnedBooks
+from Biblioteca.forms import ClientForm, InvoiceForm, BookForm, OwnedBookForm
 
 
 def home(request):
@@ -92,7 +92,29 @@ def search(request):
 
 @login_required
 def owned_books(request):
-    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
+    book_list = OwnedBooks.objects.filter(user=request.user.id)
+    return render(request, 'biblioteca/owned_books.html', {'books': book_list})
+
+
+@login_required
+def new_owned_book(request):
+    if request.method == 'POST':
+        new_book_form = OwnedBookForm(request.POST)
+
+        if new_book_form.is_valid():
+            info = new_book_form.cleaned_data
+            new = OwnedBooks(isbn=info['isbn'], title=info['title'], author=info['author'], theme=info['theme'],
+                             read=info['read'], read_date=info['read_date'], user=request.user)
+            new.save()
+            return render(request, 'home.html', {'welcome_message': f'Welcome {request.user}, enjoy your stay!'})
+
+        else:
+            form = OwnedBookForm()
+            return render(request, 'login/login.html', {'form': form, 'message': 'Incorrect data, please try again.'})
+    else:
+        form = OwnedBookForm()
+
+    return render(request, 'biblioteca/new_owned_book.html', {'form': OwnedBookForm})
 
 
 @login_required

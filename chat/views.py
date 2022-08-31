@@ -54,9 +54,9 @@ def read_message(request):
     pass
 
 
-def reviews(request):
+def reviews(request):  # will get done if I have enough time
     pass
 
 
-def new_review(request):
+def new_review(request):  # will get done if I have enough time
     pass

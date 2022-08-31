@@ -30,8 +30,11 @@ class OwnedBooks(models.Model):
     author = models.CharField(max_length=60)
     theme = models.CharField(max_length=20)
     read = models.BooleanField(default=False)
-    read_date = models.DateField()
+    read_date = models.DateField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.title} - {self.author}'
 
 
 class ToDoItem(models.Model):
@@ -42,14 +45,23 @@ class ToDoItem(models.Model):
     expiration_date = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.user.username} - {self.task}'
+
 
 class TimeTable(models.Model):
     time = models.TimeField(unique=True)
     activity = models.CharField(max_length=40)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.user.username} - {self.activity}'
+
 
 class JournalEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     entry = models.TextField()
+
+    def __str__(self):
+        return f'{self.user} {self.date} entry'

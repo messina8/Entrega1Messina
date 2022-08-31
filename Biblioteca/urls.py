@@ -9,6 +9,7 @@ urlpatterns = [
     path('legacy/clientsearch/', views.client_search, name='ClientSearch'),
     path('legacy/search/', views.search),
     path('owned_books/', views.owned_books, name='OwnedBooks'),
+    path('new_book/', views.new_owned_book, name='NewBook'),
     path('to_do/', views.to_do, name='ToDo'),
     path('timetable/', views.timetable, name='Timetable'),
     path('journal/', views.journal, name='Journal'),

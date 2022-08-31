@@ -1,0 +1,22 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %} Owned Books {% endblock %}
+
+{% block forms %}
+
+    <main class="hoc container clear">
+
+        <form method="post">{% csrf_token %}
+        {{ message }}
+        {{ form.as_p }}
+
+        <input type="submit" value="Add">
+    </form>
+
+
+
+    </main>
+
+{% endblock %}

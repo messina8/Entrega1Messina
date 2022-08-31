@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from chat.forms import SendMessageForm
 from chat.models import Message
@@ -22,7 +22,8 @@ def messages(request):
 
 
 def user_list(request):
-    pass
+    users = User.objects.all()
+    return render(request, 'chat/users.html', {'users': users})
 
 
 def send_message(request, user_id):
@@ -36,16 +37,16 @@ def send_message(request, user_id):
             message = form.cleaned_data['message']
             msg = Message(sender=request.user, message=message, target=to[0])
             msg.save()
-            return render(request, 'chat/send_message.html', context)
+            return redirect(messages)  # render(request, 'chat/send_message.html', context)
         else:
             form = SendMessageForm()
-            return render(request, 'chat/send_message.html', context)
+            return render(request, 'chat/send_message.html', form)
     else:
         form = SendMessageForm()
-        data = {'form': form, 'target_name': target.username}
+        context = {'form': form, 'target_name': target.username}
         return render(request, 'chat/send_message.html', context)
 
-    data = {'form': SendMessageForm(), 'target_name': target.username}
+    context = {'form': SendMessageForm(), 'target_name': target.username}
     return render(request, 'chat/send_message.html', context)
 
 

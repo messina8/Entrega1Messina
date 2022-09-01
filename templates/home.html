@@ -81,12 +81,14 @@ Licence URI: https://www.os-templates.com/template-terms
     <article>
       <h3 class="heading">El Rio Management</h3>
       <p>{{ welcome_message }}</p>
+        {% if not user.is_authenticated %}
       <footer>
         <ul class="nospace inline pushright">
           <li><a class="btn" href="{% url 'Login' %}">Log in</a></li>
           <li><a class="btn inverse" href="{% url 'Register' %}">Sign in</a></li>
         </ul>
       </footer>
+        {% endif %}
     </article>
     <!-- ################################################################################################ -->
   </div>
@@ -174,7 +176,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <li class="one_half">
           <article><a href="{% url 'Journal' %}"><i class="fas fa-pen-fancy"></i></a>
             <h6 class="heading">Journal</h6>
-            <p>{% lorem 10 w %}</p>
+            <p>Keep track of your thoughts, feelings, activities, anything you believe needs recording.</p>
             <footer><a href="{% url 'Journal' %}">Go &raquo;</a></footer>
           </article>
         </li>

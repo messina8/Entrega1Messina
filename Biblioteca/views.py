@@ -1,8 +1,10 @@
+import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from Biblioteca.models import Book, Invoices, Clients, OwnedBooks
-from Biblioteca.forms import ClientForm, InvoiceForm, BookForm, OwnedBookForm
+from Biblioteca.models import Book, Invoices, Clients, OwnedBooks, JournalEntry
+from Biblioteca.forms import *
 
 
 def home(request):
@@ -92,11 +94,10 @@ def search(request):
 
 @login_required
 def owned_books(request):
-    book_list = OwnedBooks.objects.filter(user=request.user.id)
+    book_list = OwnedBooks.objects.filter(user=request.user)
     return render(request, 'biblioteca/owned_books.html', {'books': book_list})
 
 
-@login_required
 def new_owned_book(request):
     if request.method == 'POST':
         new_book_form = OwnedBookForm(request.POST)
@@ -106,7 +107,7 @@ def new_owned_book(request):
             new = OwnedBooks(isbn=info['isbn'], title=info['title'], author=info['author'], theme=info['theme'],
                              read=info['read'], read_date=info['read_date'], user=request.user)
             new.save()
-            return render(request, 'home.html', {'welcome_message': f'Welcome {request.user}, enjoy your stay!'})
+            return redirect(owned_books)
 
         else:
             form = OwnedBookForm()
@@ -115,6 +116,16 @@ def new_owned_book(request):
         form = OwnedBookForm()
 
     return render(request, 'biblioteca/new_owned_book.html', {'form': OwnedBookForm})
+
+
+def set_book_read(request, book_id):
+    book = (OwnedBooks.objects.filter(id=book_id))[0]
+    book.read = True
+    book.read_date = datetime.datetime.today().strftime('%Y-%m-%d')
+    book.save()
+    return render(request, 'biblioteca/clean_base.html', {'message': f'The book {book.title} by {book.author}'
+                                                                     f' was successfully set as read.',
+                                                          'url': '/management/owned_books/'})
 
 
 @login_required
@@ -128,10 +139,15 @@ def timetable(request):
 
 
 @login_required
-def user_chat(request):
-    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
-
-
-@login_required
 def journal(request):
-    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
+    entry_list = JournalEntry.objects.filter(user=request.user)
+    return render(request, 'biblioteca/journal.html', {'entry_list': entry_list})
+
+
+def new_journal_entry(request):
+
+    return render(request, 'biblioteca/clients.html', {'form': NewJournalEntryForm})
+
+
+def read_entry(request, entry_id):
+    pass

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -105,3 +105,20 @@ def edit_profile(request):
         form = ProfileUpdate()
 
     return render(request, 'login/profile_update.html', {'form': form})
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+
+        if form.is_valid():
+            form.save()
+            return render(request, 'home.html', {'welcome_message': f'Password changed correctly.'})
+
+        else:
+            form = PasswordChangeForm(request.user)
+            return render(request, 'login/login.html', {'form': form, 'message': 'Incorrect data, please try again.'})
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, 'login/login.html', {'form': form})

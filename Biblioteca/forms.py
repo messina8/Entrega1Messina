@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 
 
@@ -27,6 +29,13 @@ class OwnedBookForm(forms.Form):
     author = forms.CharField(label='author', max_length=60)
     theme = forms.CharField(label='theme', max_length=20)
     read = forms.BooleanField(label='read', widget=forms.CheckboxInput, required=False)
-    read_date = forms.DateField(label='read_date' ,required=False, widget=forms.DateInput)
+    read_date = forms.DateField(label='read_date', required=False,
+                                widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+
+
+class NewJournalEntryForm(forms.Form):
+    date = forms.DateField(label='entry_date', required=False, initial=datetime.datetime.today().strftime('%Y-%m-%d'),
+                           widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    text = forms.CharField(widget=forms.Textarea)
 
 

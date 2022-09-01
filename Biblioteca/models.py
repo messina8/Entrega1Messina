@@ -60,7 +60,7 @@ class TimeTable(models.Model):
 
 class JournalEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateField(unique=True)
     entry = models.TextField()
 
     def __str__(self):

@@ -39,10 +39,10 @@ class OwnedBooks(models.Model):
 
 class ToDoItem(models.Model):
     done = models.BooleanField(default=False)
-    time_when_done = models.DateTimeField()
+    time_when_done = models.DateTimeField(null=True)
     task = models.CharField(max_length=40)
     task_description = models.CharField(max_length=160)
-    expiration_date = models.DateTimeField()
+    expiration_date = models.DateTimeField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

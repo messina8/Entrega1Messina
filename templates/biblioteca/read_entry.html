@@ -1,0 +1,23 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Clients{% endblock %}
+
+{% block forms %}
+
+
+    <main class="hoc container clear">
+
+
+        <div class="text-center">{{ entry.entry }}</div>
+
+        <div class="one_quarter first"><footer><a href="{% url 'Journal' %}">&laquo; Go back</a></footer></div>
+
+        <div class="one_quarter"><footer><a href="../journal/edit/{{ entry.id }}">Edit &raquo;</a></footer></div>
+
+
+
+    </main>
+
+{% endblock %}

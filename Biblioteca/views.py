@@ -129,11 +129,6 @@ def set_book_read(request, book_id):
 
 
 @login_required
-def to_do(request):
-    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
-
-
-@login_required
 def timetable(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
 
@@ -149,5 +144,25 @@ def new_journal_entry(request):
     return render(request, 'biblioteca/clients.html', {'form': NewJournalEntryForm})
 
 
+def edit_entry(request, entry_id):  # should make a big "if:" to check if the entry belongs to the user.
+    entry = JournalEntry.objects.get(id=entry_id)
+    if request.method == 'POST':
+        form = NewJournalEntryForm(request.POST, )
+
+        if form.is_valid():
+            entry.entry = form.cleaned_data['text']
+            entry.save()
+            return redirect('Journal')
+    else:
+        form = NewJournalEntryForm(initial={'date': entry.date, 'text': entry.entry})
+    return render(request, 'biblioteca/edit_entry.html', {'entry': entry, 'form': form})
+
+
 def read_entry(request, entry_id):
-    pass
+    text = JournalEntry.objects.filter(id=entry_id)
+    return render(request, 'biblioteca/read_entry.html', {'entry': text[0]})
+
+
+@login_required
+def to_do(request):
+    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})

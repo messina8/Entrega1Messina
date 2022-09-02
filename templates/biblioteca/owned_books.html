@@ -11,13 +11,13 @@
 
     {% for book in books %}
         <ul class="nospace linklist">
-        <li class="one_half first">Title: {{ book.title }}</li>
-        <li class="one_half">Author: {{ book.author }}</li>
+            <li class="one_half first">Title: {{ book.title }}</li>
+            <li class="one_half">Author: {{ book.author }}</li>
 
-        <li class="one_quarter first">ISBN: {{ book.isbn }}</li>
-        <li class="one_quarter">Theme: {{ book.theme }}</li>
-        <li class="one_quarter">Read: {%  if book.read %} Yes {% else %} No {% endif %}</li>
-        <li class="one_quarter">Read date: {%  if book.read %}  {{ book.read_date }} {% endif %}</li>
+            <li class="one_quarter first">ISBN: {{ book.isbn }}</li>
+            <li class="one_quarter">Theme: {{ book.theme }}</li>
+            <li class="one_quarter">Read: {%  if book.read %} Yes {% else %} No {% endif %}</li>
+            <li class="one_quarter">Read date: {%  if book.read %}  {{ book.read_date }} {% endif %}</li>
         </ul>
         <li class="one_quarter last"><footer><a href="../set_read/{{ book.id }}">Mark Read &raquo;</a></footer></li>
     {% endfor %}

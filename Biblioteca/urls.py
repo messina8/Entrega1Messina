@@ -14,7 +14,8 @@ urlpatterns = [
     path('to_do/', views.to_do, name='ToDo'),
     path('timetable/', views.timetable, name='Timetable'),
     path('journal/', views.journal, name='Journal'),
-    path('journal_entry/<entry_id>', views.journal),
+    path('journal/edit/<entry_id>', views.edit_entry),
+    path('journal_entry/<entry_id>', views.read_entry),
     path('new_entry/', views.new_journal_entry, name='NewEntry'),
 
 ]

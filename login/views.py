@@ -66,11 +66,16 @@ def register(request):
 def profile(request):
     user_data = {}
     if request.user.is_authenticated:
-        pictures = Profile.objects.filter(user=request.user.id)
+        try:
+            profile_picture = Profile.objects.get(user=request.user.id).avatar
+
+        except:
+            profile_picture = '/avatars/default.png'
+
         user_data = {'username': request.user.username,
                      'email': request.user.email,
                      'full_name': request.user.first_name + ' ' + request.user.last_name,
-                     'picture': pictures[0].avatar.url,
+                     'picture': profile_picture,
                      'join_date': request.user.date_joined
                      }
     return render(request, 'login/profile.html', user_data)
@@ -89,7 +94,8 @@ def edit_profile(request):
             user.first_name = data['first_name']  # if data['first_name'] is not None else request.user.first_name
             user.last_name = data['last_name']  # if data['last_name'] is not None else request.user.last_name
             if avatar_db is not None:
-                avatar_db.avatar=data['avatar']
+                avatar_db.avatar.delete()
+                avatar_db.avatar = data['avatar']
             else:
                 avatar_db = Profile(user=user, avatar=data['avatar'])
             user.save()

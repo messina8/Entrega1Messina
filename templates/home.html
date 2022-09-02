@@ -35,7 +35,8 @@ Licence URI: https://www.os-templates.com/template-terms
       <!-- ################################################################################################ -->
       <ul class="clear">
         <li class="active"><a href="{% url 'Home' %}">Home</a></li>
-        <li><a class="drop" href="#">Static HTMLs</a>
+        {% if user.is_authenticated and user.is_superuser %}
+          <li><a class="drop" href="#">Static HTMLs</a>
           <ul>
             <li><a href={% static "nekmit/pages/gallery.html" %}>Gallery</a></li>
             <li><a href={% static "nekmit/pages/full-width.html" %}>Full Width</a></li>
@@ -44,7 +45,7 @@ Licence URI: https://www.os-templates.com/template-terms
             <li><a href={% static "nekmit/pages/basic-grid.html" %}>Basic Grid</a></li>
             <li><a href={% static "nekmit/pages/font-icons.html" %}>Font Icons</a></li>
           </ul>
-        </li>
+              {% endif %}
         <li><a class="drop" href="#">Productivity</a>
           <ul>
             <li><a href="{% url 'OwnedBooks' %}">Owned Books</a></li>
@@ -103,7 +104,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <ul class="nospace clear">
       <li class="one_quarter first">
-        <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>Give us a call:</strong> +54 11 4747 0440</span></div>
+        <div class="block clear"><a href="{% url 'AboutUs' %}"><i class="fas fa-handshake"></i></a> <span><strong>About us:</strong>Get to know us </span></div>
       </li>
       <li class="one_quarter">
         <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Mail us:</strong> info@elriosoftware.com</span></div>

@@ -12,10 +12,13 @@
 
         <div class="text-center">{{ entry.entry }}</div>
 
-        <div class="one_quarter first"><footer><a href="{% url 'Journal' %}">&laquo; Go back</a></footer></div>
+        <div class="center">
 
-        <div class="one_quarter"><footer><a href="../journal/edit/{{ entry.id }}">Edit &raquo;</a></footer></div>
+        <div class="one_half first"><footer><a href="{% url 'Journal' %}">&laquo; Go back</a></footer></div>
 
+        <div class="one_half"><footer><a href="../journal/edit/{{ entry.id }}">Edit &raquo;</a></footer></div>
+
+        </div>
 
 
     </main>

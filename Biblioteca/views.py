@@ -12,6 +12,11 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+def about(request):
+    context = {'welcome_message': 'Welcome to El Rio bookshop management system.'}
+    return render(request, 'home.html', context)
+
+
 def books(request):
     if request.method == 'GET':
         form = BookForm()

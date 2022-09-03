@@ -21,5 +21,3 @@ urlpatterns = [
     path('timetable/', views.timetable, name='Timetable'),
 
 ]
-
-

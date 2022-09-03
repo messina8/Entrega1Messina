@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from Biblioteca.models import Book, Invoices, Clients, OwnedBooks, JournalEntry
@@ -8,13 +9,15 @@ from Biblioteca.forms import *
 
 
 def home(request):
-    context = {'welcome_message': 'Welcome to El Rio bookshop management system.'}
+    context = {'welcome_message': 'Welcome to El Rio Time management system.'}
+    if request.user.is_authenticated:
+        context = {'welcome_message': f'Welcome to El Rio Time management system, {request.user.username}.'}
     return render(request, 'home.html', context)
 
 
 def about(request):
-    context = {'welcome_message': 'Welcome to El Rio bookshop management system.'}
-    return render(request, 'home.html', context)
+    context = {'welcome_message': 'Welcome to El Rio Time management system.'}
+    return render(request, 'about.html', context)
 
 
 def books(request):
@@ -141,12 +144,34 @@ def timetable(request):
 @login_required
 def journal(request):
     entry_list = JournalEntry.objects.filter(user=request.user)
+    entry_list.order_by('-date')
     return render(request, 'biblioteca/journal.html', {'entry_list': entry_list})
 
 
 def new_journal_entry(request):
+    if request.method == 'POST':
+        form = NewJournalEntryForm(request.POST)
 
-    return render(request, 'biblioteca/clients.html', {'form': NewJournalEntryForm})
+        if form.is_valid():
+            entry = form.cleaned_data
+            new = JournalEntry(date=entry['date'], entry=entry['text'], user=request.user)
+
+            try:
+                new.save()
+            except IntegrityError:
+                return render(request,
+                              'biblioteca/clean_base.html',
+                              {'form': form,
+                               'message': 'That date already exists, try editing.',
+                               'hide': False,
+                               'url': '../journal'})
+
+            return redirect(journal)
+        else:
+            render(request, 'biblioteca/clean_base.html', {'form': form,
+                                                           'message': 'Date format incorrect./nPlease use yyyy-mm-dd',
+                                                           'hide': True})
+    return render(request, 'biblioteca/clean_base.html', {'form': NewJournalEntryForm, 'hide': True})
 
 
 def edit_entry(request, entry_id):  # should make a big "if:" to check if the entry belongs to the user.

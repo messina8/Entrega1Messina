@@ -34,8 +34,8 @@ class OwnedBookForm(forms.Form):
 
 
 class NewJournalEntryForm(forms.Form):
-    date = forms.DateField(label='entry_date', required=False, initial=datetime.datetime.today().strftime('%Y-%m-%d'),
+    date = forms.DateField(label='Entry Date:', required=False, initial=datetime.datetime.today().strftime('%Y-%m-%d'),
                            widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
-    text = forms.CharField(widget=forms.Textarea)
+    text = forms.CharField(label='Entry Text:', widget=forms.Textarea)
 
 

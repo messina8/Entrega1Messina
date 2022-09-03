@@ -60,8 +60,12 @@ class TimeTable(models.Model):
 
 class JournalEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(unique=True)
+    date = models.DateField()
     entry = models.TextField()
+
+    class Meta:
+        unique_together = (("user", "date"),)
+        ordering = ['-date']
 
     def __str__(self):
         return f'{self.user} {self.date} entry'

@@ -21,7 +21,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay padtop" style="background-image:url(https://i0.wp.com/baballa.com/wp-content/uploads/2021/07/susan-q-yin-2JIvboGLeho-unsplash.jpg?resize=768%2C512{# {% static 'nekmit\images\demo\backgrounds\01.png' %} #});">
+<div class="bgded overlay padtop" style="background-image:url({% static 'nekmit\images\demo\backgrounds\face1.jpg' %});">
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
@@ -78,10 +78,10 @@ Licence URI: https://www.os-templates.com/template-terms
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
-  <div id="pageintro" class="hoc clear">
+<div id="pageintro" class="hoc clear">
     <!-- ################################################################################################ -->
     <article>
-      <h3 class="heading">El Rio Management</h3>
+      <h3 class="heading">Tomás Messina</h3>
       <p>{{ welcome_message }}</p>
         {% if not user.is_authenticated %}
       <footer>
@@ -129,62 +129,14 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <section id="services">
       <div class="sectiontitle">
-        <p class="nospace font-xs"></p>
-        <h6 class="heading">Time Management Services</h6>
+        <p class="nospace font-xs">Some History</p>
+        <h6 class="heading">My path</h6>
       </div>
-      <ul class="nospace group grid-2">
-          {% if user.is_superuser %}
-        <li class="one_third first">
-          <article><a href="{% url 'Books' %}"><i class="fas fa-book-open"></i></a>
-            <h6 class="heading">Books</h6>
-            <p>Manage the books from you bookshop (LEGACY FEATURE)</p>
-            <footer><a href="{% url 'Books' %}">More Details &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article><a href="{% url 'Clients' %}"><i class="fas fa-user"></i></a>
-            <h6 class="heading">Clients</h6>
-            <p>Manage the clients from you bookshop (LEGACY FEATURE)</p>
-            <footer><a href="{% url 'Clients' %}">More Details &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article><a href="{% url 'Invoice' %}"><i class="fas fa-file-invoice-dollar"></i></a>
-            <h6 class="heading">Invoices</h6>
-            <p>Manage the invoices from you bookshop (LEGACY FEATURE)</p>
-            <footer><a href="{% url 'Invoice' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-          {% endif %}
-        <li class="one_half first">
-          <article><a href="{% url 'OwnedBooks' %}"><i class="fas fa-book"></i></a>
-            <h6 class="heading">Owned Books</h6>
-            <p>Manage your owned books. Set read date and keep track!</p>
-            <footer><a href="{% url 'OwnedBooks' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_half">
-          <article><a href="{% url 'ToDo' %}"><i class="fas fa-clipboard-list"></i></a>
-            <h6 class="heading">To Do List</h6>
-            <p>Make a simple To Do list. Set times activities and goals..</p>
-            <footer><a href="{% url 'ToDo' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_half first">
-          <article><a href="{% url 'Timetable' %}"><i class="fas fa-grip-vertical"></i></a>
-            <h6 class="heading">Time Table</h6>
-            <p>Manage your daily routine with a simple Time Table.</p>
-            <footer><a href="{% url 'Timetable' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-          <li class="one_half">
-          <article><a href="{% url 'Journal' %}"><i class="fas fa-pen-fancy"></i></a>
-            <h6 class="heading">Journal</h6>
-            <p>Keep track of your thoughts, feelings, activities, anything you believe needs recording.</p>
-            <footer><a href="{% url 'Journal' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-      </ul>
+        <p>Hello there! As im sure you have already read, I'm Tomás Messina. I split my time between Bookselling, coding and some gaming. </p>
+        <p>Since im 20 years old, I've been working on my family's bookshop, recently taking more and more interest in Management theory, Leadership,  constant improval and finances.</p>
+        <p>In the last years I developed an interest in programming, finding my way through some basic programming, until I felt it was time for the next step, enrolling on different courses.</p>
+
+
     </section>
     <!-- ################################################################################################ -->
     <!-- / main body -->
@@ -194,94 +146,47 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="bgded overlay" style="background-image:url({% static 'nekmit/images/demo/backgrounds/01.png' %});">
+<div class="bgded overlay" style="background-image:url({% static 'nekmit/images/demo/backgrounds/hands.jpg' %});">
   <section class="hoc container clear">
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
-      <p class="nospace font-xs">Nisi velit nec turpis nullam vitae</p>
-      <h6 class="heading">Quam nunc ut elit nunc molestie</h6>
+      <p class="nospace font-xs">Professional Experiences</p>
+      <h6 class="heading">My sinuous Journey</h6>
     </div>
     <article id="points" class="group">
-      <div class="two_third first">
-        <h6 class="heading">Sapien tempor placerat</h6>
-        <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu sed tempus tempor orci vestibulum volutpat eleifend arcu nunc vitae lacus sit amet sem consequat ullamcorper vivamus quis risus ut turpis sagittis venenatis.</p>
-        <p>Volutpat et aliquam sed magna duis nibh dui porttitor eu rhoncus ut convallis eu eros in condimentum placerat.</p>
-        <ul class="nospace group">
-          <li><span>1</span> Nulla bibendum in erat</li>
-          <li><span>2</span> Enim interdum a aliquam</li>
-          <li><span>3</span> Sed commodo bibendum justo</li>
-          <li><span>4</span> Sed pretium elit sed</li>
-          <li><span>5</span> Nisi aliquam dolor urna</li>
-          <li><span>6</span> Interdum ut dignissim eget</li>
-          <li><span>7</span> Sagittis eget eros integer</li>
-          <li><span>8</span> Velit mi facilisis eget</li>
+      <div class="one_third first">
+        <h6 class="heading">Coding</h6>
+          <ul class="nospace">
+          <li><span>1</span> C# (Unity)</li>
+          <li><span>2</span> Blender(basic)</li>
+          <li><span>3</span> Android Studio</li>
+          <li><span>4</span> Java (Android)</li>
+          <li><span>5</span> Python(Django)</li>
+          <li><span>6</span> SQL(basic)</li>
         </ul>
       </div>
-      <div class="one_third last"><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x394.png" %} alt=""></a></div>
+      <div class="one_third">
+        <h6 class="heading">Management Experiences</h6>
+        <ul class="nospace group">
+          <li><span>1</span> Employee Management</li>
+          <li><span>2</span> Team coordination</li>
+          <li><span>3</span> Employee training</li>
+          <li><span>4</span> Recruiter/Interviewer</li>
+        </ul>
+      </div>
+      <div class="one_third">
+        <h6 class="heading">Other Experiences</h6>
+        <ul class="nospace group">
+          <li><span>1</span> Spanish (native speaker)</li>
+          <li><span>2</span> English (advanced)</li>
+          <li><span>3</span> Italian (Intermediate)</li>
+          <li><span>4</span> Waiter</li>
+          <li><span>5</span> Barman</li>
+          <li><span>6</span> Cashier</li>
+        </ul>
+      </div>
+
     </article>
-    <!-- ################################################################################################ -->
-  </section>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row2">
-  <section class="hoc container clear">
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <p class="nospace font-xs">Odio duis ut est quis nisl consequat</p>
-      <h6 class="heading">Gravida donec non erat eget</h6>
-    </div>
-    <ul id="latest" class="nospace group sd-third">
-      <li class="one_third first">
-        <article>
-          <figure><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x261.png"%} alt=""></a>
-            <figcaption>
-              <ul class="nospace meta clear">
-                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
-                <li>
-                  <time datetime="2045-04-06T08:15+00:00">06 Apr 2045</time>
-                </li>
-              </ul>
-              <h6 class="heading"><a href="#">Elit pellentesque dapibus</a></h6>
-            </figcaption>
-          </figure>
-          <p>Justo massa adipiscing a convallis ultricies luctus et dolor aliquam nulla aenean facilisis ullamcorper diam nunc pede nulla iaculis quis lacinia ac adipiscing.</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article>
-          <figure><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
-            <figcaption>
-              <ul class="nospace meta clear">
-                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
-                <li>
-                  <time datetime="2045-04-05T08:15+00:00">05 Apr 2045</time>
-                </li>
-              </ul>
-              <h6 class="heading"><a href="#">Quis ligula morbi quam</a></h6>
-            </figcaption>
-          </figure>
-          <p>Semper mattis nulla cursus lorem ut gravida tempor massa massa porta libero at scelerisque et arcu nulla facilisi aenean fringilla imperdiet felis mauris.</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article>
-          <figure><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
-            <figcaption>
-              <ul class="nospace meta clear">
-                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
-                <li>
-                  <time datetime="2045-04-04T08:15+00:00">04 Apr 2045</time>
-                </li>
-              </ul>
-              <h6 class="heading"><a href="#">Hendrerit ligula eu diam</a></h6>
-            </figcaption>
-          </figure>
-          <p>Ac lectus sed ultricies augue congue nibh donec convallis elementum leo nullam dignissim varius ante fusce pharetra sodales arcu sed rutrum ipsum a ipsum.</p>
-        </article>
-      </li>
-    </ul>
     <!-- ################################################################################################ -->
   </section>
 </div>
@@ -291,58 +196,53 @@ Licence URI: https://www.os-templates.com/template-terms
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear">
     <!-- ################################################################################################ -->
-    <div class="one_quarter first">
-      <h6 class="heading">Praesent id aliquam</h6>
-      <p>Non tellus nec sapien lobortis lobortis mauris egestas massa ac cursus pellentesque leo risus convallis nulla et fringilla sapien magna sit amet magna aliquam tempus praesent sit amet neque sed lobortis nulla facilisi [<a href="#">&hellip;</a>]</p>
+    <div class="one_third first">
+      <h6 class="heading">Social Networks:</h6>
+      <p>I believe that Less is More, so I keep my online presence to the purely professional.</p>
       <ul class="faico clear">
-        <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-        <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
-        <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-        <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+        <li><a class="faicon-linkedin" href="https://www.linkedin.com/in/tom%C3%A1s-messina-405b47159/"><i class="fab fa-linkedin"></i></a></li>
       </ul>
     </div>
-    <div class="one_quarter">
-      <h6 class="heading">Rutrum amet sodales</h6>
+    <div class="one_third">
+      <h6 class="heading">Other Links:</h6>
       <ul class="nospace linklist">
-        <li><a href="#">Nulla tincidunt magna</a></li>
-        <li><a href="#">Vel iaculis mollis mi</a></li>
-        <li><a href="#">Lacus tincidunt diam ac</a></li>
-        <li><a href="#">Varius purus justo pretium</a></li>
-        <li><a href="#">Nunc proin tortor elit</a></li>
+        <li><a href="https://www.elriolibros.com.ar/">Bookshop</a></li>
+        <li><a href="https://elriolibros.mercadoshops.com.ar/">Book Catalogue</a></li>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">Portfolio</a></li>
       </ul>
     </div>
-    <div class="one_quarter">
-      <h6 class="heading">At feugiat in diam</h6>
-      <p class="nospace btmspace-15">In vestibulum dolor et augue fusce neque enim scelerisque at fermentum.</p>
+    <div class="one_third">
+      <h6 class="heading">Like what you see?</h6>
+      <p class="nospace btmspace-15">Make sure to leave me a comment!(if the function is already added).</p>
       <form action="#" method="post">
         <fieldset>
           <legend>Newsletter:</legend>
           <input class="btmspace-15" type="text" value="" placeholder="Name">
-          <input class="btmspace-15" type="text" value="" placeholder="Email">
+          <input class="btmspace-15" type="text" value="" placeholder="Comment">
           <button class="btn" type="submit" value="submit">Submit</button>
         </fieldset>
       </form>
     </div>
-    <div class="one_quarter last">
-      <h6 class="heading">Sed imperdiet pharetra</h6>
-      <ul class="nospace linklist">
-        <li>
-          <article>
-            <h6 class="nospace font-x1"><a href="#">Massa nam nulla augue</a></h6>
-            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
-            <p class="nospace">Faucibus nec lacinia quis ornare a eros pellentesque in orci vitae</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h6 class="nospace font-x1"><a href="#">Velit vehicula auctor</a></h6>
-            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
-            <p class="nospace">Pellentesque pulvinar vestibulum bibendum blandit lectus pretium</p>
-          </article>
-        </li>
-      </ul>
-    </div>
+{#    <div class="one_quarter last">#}
+{#      <h6 class="heading">Sed imperdiet pharetra</h6>#}
+{#      <ul class="nospace linklist">#}
+{#        <li>#}
+{#          <article>#}
+{#            <h6 class="nospace font-x1"><a href="#">Massa nam nulla augue</a></h6>#}
+{#            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>#}
+{#            <p class="nospace">Faucibus nec lacinia quis ornare a eros pellentesque in orci vitae</p>#}
+{#          </article>#}
+{#        </li>#}
+{#        <li>#}
+{#          <article>#}
+{#            <h6 class="nospace font-x1"><a href="#">Velit vehicula auctor</a></h6>#}
+{#            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>#}
+{#            <p class="nospace">Pellentesque pulvinar vestibulum bibendum blandit lectus pretium</p>#}
+{#          </article>#}
+{#        </li>#}
+{#      </ul>#}
+{#    </div>#}
     <!-- ################################################################################################ -->
   </footer>
 </div>
@@ -352,7 +252,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear">
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_left">Copyright &copy; 2022 - All Rights Reserved - <a href="#">El Rio Software</a></p>
     <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     <!-- ################################################################################################ -->
   </div>

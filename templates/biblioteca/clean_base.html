@@ -11,8 +11,17 @@
 
 
         {{ message }}
-        <footer><a href="{{ url }}">Go back &raquo;</a></footer>
+        <form method="post">{% csrf_token %}
+        {{ form.as_p }}
 
+        {% if form %}
+        <input type="submit" value="Submit">
+        {% endif %}
+        </form>
+
+        {% if not hide %}
+        <footer><a href="{{ url }}">&laquo; Go back</a></footer>
+        {% endif %}
 
     </main>
 

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
-from django.contrib.auth import login as auth_login, logout, authenticate
+from django.contrib.auth import login as auth_login, logout, authenticate, login as django_login
 from django.contrib.auth.decorators import login_required
 
 from login.forms import ProfileUpdate
@@ -50,7 +50,9 @@ def register(request):
 
         if form.is_valid():
             username = form.cleaned_data['username']
-            form.save()
+            user = form.save()
+            django_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
             return render(request, 'home.html', {'welcome_message': f'Welcome {username}, enjoy your stay!'})
 
         else:

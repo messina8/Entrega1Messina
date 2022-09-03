@@ -1,0 +1,43 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Messages{% endblock %}
+
+
+
+{% block forms %}
+    <main class="hoc container clear">
+        <div id="comments">
+            <h2>To Do list:</h2>
+            <p>Click on date to read whole text.</p>
+            {% for item in to_do_list %}
+            <ul>
+              <li>
+                <article>
+                  <header>
+                    <address>
+                    Due: <a href="../journal_entry/{{ item.id }}">{{ item.expiration_date }}</a>
+                    </address>
+                  </header>
+
+                  <div class="group btmspace-15">
+                      <div class="one_quarter first">{{ item.task }}</div>
+                      <div class="one_half">{{ item.task_description }}</div>
+                      {% if not done %}<div class="one_quarter"><a href="set_task_done/{{ item.id }}"> Set Done &raquo</a></div>{% endif %}
+                      {% if done %}<div class="one_quarter">Done on {{ item.time_when_done }}</div>{% endif %}
+                  </div>
+
+
+                </article>
+              </li>
+            </ul>
+            {% endfor %}
+            <div class="one_quarter first"><a href="{% url 'NewTask' %}">New Task &raquo;</a></div>
+            {% if not done %}<div class="one_quarter first"><a href="{% url 'Done' %}">View Completed Tasks &raquo;</a></div>
+            {% else %} <div class="one_quarter first"><a href="{% url 'ToDo' %}">View Incomplete Tasks &raquo;</a></div>
+            {% endif %}
+
+        </div>
+</main>
+{% endblock %}

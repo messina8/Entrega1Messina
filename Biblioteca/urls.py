@@ -11,11 +11,16 @@ urlpatterns = [
     path('owned_books/', views.owned_books, name='OwnedBooks'),
     path('new_book/', views.new_owned_book, name='NewBook'),
     path('set_read/<book_id>', views.set_book_read),
-    path('to_do/', views.to_do, name='ToDo'),
-    path('timetable/', views.timetable, name='Timetable'),
     path('journal/', views.journal, name='Journal'),
     path('journal/edit/<entry_id>', views.edit_entry),
     path('journal_entry/<entry_id>', views.read_entry),
     path('new_entry/', views.new_journal_entry, name='NewEntry'),
+    path('to_do/', views.to_do, name='ToDo'),
+    path('done/', views.done, name='Done'),
+    path('to_do/new_task', views.new_task, name='NewTask'),
+    path('to_do/set_task_done/<task_id>', views.set_task_done),
+    path('timetable/', views.timetable, name='Timetable'),
 
 ]
+
+

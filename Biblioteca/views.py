@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from Biblioteca.models import Book, Invoices, Clients, OwnedBooks, JournalEntry
+from Biblioteca.models import Book, Invoices, Clients, OwnedBooks, JournalEntry, ToDoItem
 from Biblioteca.forms import *
 
 
@@ -106,6 +106,7 @@ def owned_books(request):
     return render(request, 'biblioteca/owned_books.html', {'books': book_list})
 
 
+@login_required()
 def new_owned_book(request):
     if request.method == 'POST':
         new_book_form = OwnedBookForm(request.POST)
@@ -126,8 +127,9 @@ def new_owned_book(request):
     return render(request, 'biblioteca/new_owned_book.html', {'form': OwnedBookForm})
 
 
+@login_required()
 def set_book_read(request, book_id):
-    book = (OwnedBooks.objects.filter(id=book_id))[0]
+    book = OwnedBooks.objects.get(id=book_id)
     book.read = True
     book.read_date = datetime.datetime.today().strftime('%Y-%m-%d')
     book.save()
@@ -137,17 +139,13 @@ def set_book_read(request, book_id):
 
 
 @login_required
-def timetable(request):
-    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
-
-
-@login_required
 def journal(request):
     entry_list = JournalEntry.objects.filter(user=request.user)
     entry_list.order_by('-date')
     return render(request, 'biblioteca/journal.html', {'entry_list': entry_list})
 
 
+@login_required()
 def new_journal_entry(request):
     if request.method == 'POST':
         form = NewJournalEntryForm(request.POST)
@@ -174,6 +172,7 @@ def new_journal_entry(request):
     return render(request, 'biblioteca/clean_base.html', {'form': NewJournalEntryForm, 'hide': True})
 
 
+@login_required()
 def edit_entry(request, entry_id):  # should make a big "if:" to check if the entry belongs to the user.
     entry = JournalEntry.objects.get(id=entry_id)
     if request.method == 'POST':
@@ -188,6 +187,7 @@ def edit_entry(request, entry_id):  # should make a big "if:" to check if the en
     return render(request, 'biblioteca/edit_entry.html', {'entry': entry, 'form': form})
 
 
+@login_required()
 def read_entry(request, entry_id):
     text = JournalEntry.objects.filter(id=entry_id)
     return render(request, 'biblioteca/read_entry.html', {'entry': text[0]})
@@ -195,4 +195,49 @@ def read_entry(request, entry_id):
 
 @login_required
 def to_do(request):
+    to_do_list = ToDoItem.objects.filter(user=request.user, done=False)
+    to_do_list.order_by('-expiration_date')
+    return render(request, 'biblioteca/to_do.html', {'to_do_list': to_do_list})
+
+
+@login_required
+def done(request):
+    to_do_list = ToDoItem.objects.filter(user=request.user, done=True)
+    to_do_list.order_by('-expiration_date')
+    return render(request, 'biblioteca/to_do.html', {'to_do_list': to_do_list, 'done': True})
+
+
+def new_task(request):
+    if request.method == 'POST':
+        form = NewTaskForm(request.POST)
+
+        if form.is_valid():
+            task = form.cleaned_data
+            new = ToDoItem(expiration_date=task['due'], task=task['task'],
+                           task_description=task['description'], user=request.user)
+
+            new.save()
+
+            return redirect(to_do)
+        else:
+            render(request, 'biblioteca/clean_base.html', {'form': form,
+                                                           'message': 'Date format incorrect./nPlease use yyyy-mm-dd',
+                                                           'hide': True})
+    return render(request, 'biblioteca/clean_base.html', {'form': NewTaskForm, 'hide': True})
+
+
+@login_required()
+def set_task_done(request, task_id):
+    item = ToDoItem.objects.get(id=task_id)
+    item.done = True
+    item.time_when_done = datetime.datetime.now()
+    item.save()
+    return render(request, 'biblioteca/clean_base.html',
+                  {'message': f'The task {item.task} was successfully set as read.', 'url': '/management/to_do/'})
+
+
+@login_required
+def timetable(request):
     return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
+
+

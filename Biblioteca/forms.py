@@ -39,3 +39,8 @@ class NewJournalEntryForm(forms.Form):
     text = forms.CharField(label='Entry Text:', widget=forms.Textarea)
 
 
+class NewTaskForm(forms.Form):
+    task = forms.CharField(label='Task:')
+    due = forms.DateTimeField(label='Due:', required=False, initial=datetime.datetime.now())
+    description = forms.CharField(label='Description:', required=False)
+

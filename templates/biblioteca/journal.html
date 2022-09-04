@@ -11,6 +11,11 @@
         <div id="comments">
             <h2>Journal Entries:</h2>
             <p>Click on date to read whole text.</p>
+
+            {% if entry_list.count == 0%}
+                <h6>No Entries to display.</h6>
+            {% endif %}
+
             {% for day in entry_list %}
             <ul>
               <li>
@@ -26,6 +31,7 @@
 
                     {% endif %} </p>
                   </div>
+
                 </article>
               </li>
             </ul>

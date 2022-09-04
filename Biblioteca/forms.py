@@ -18,18 +18,18 @@ class BookForm(forms.Form):
 
 
 class InvoiceForm(forms.Form):
-    client_name = forms.CharField(label='client_name', max_length=40)
-    book_id = forms.IntegerField(label='book_id')
-    total = forms.IntegerField(label='total')
+    client_name = forms.CharField(label='Client Name:', max_length=40)
+    book_id = forms.IntegerField(label='Book ID')
+    total = forms.IntegerField(label='Total')
 
 
 class OwnedBookForm(forms.Form):
-    isbn = forms.CharField(label='isbn', max_length=15)
-    title = forms.CharField(label='title', max_length=60)
-    author = forms.CharField(label='author', max_length=60)
-    theme = forms.CharField(label='theme', max_length=20)
-    read = forms.BooleanField(label='read', widget=forms.CheckboxInput, required=False)
-    read_date = forms.DateField(label='read_date', required=False,
+    isbn = forms.CharField(label='Isbn:', max_length=15)
+    title = forms.CharField(label='Title:', max_length=60)
+    author = forms.CharField(label='Author::', max_length=60)
+    theme = forms.CharField(label='Theme:', max_length=20)
+    read = forms.BooleanField(label='Read:', widget=forms.CheckboxInput, required=False)
+    read_date = forms.DateField(label='Read date:', required=False,
                                 widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
 

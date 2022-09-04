@@ -18,6 +18,7 @@ urlpatterns = [
     path('done/', views.done, name='Done'),
     path('to_do/new_task', views.new_task, name='NewTask'),
     path('to_do/set_task_done/<task_id>', views.set_task_done),
+    path('to_do/delete/<task_id>', views.delete_task, ),
     path('timetable/', views.timetable, name='Timetable'),
 
 ]

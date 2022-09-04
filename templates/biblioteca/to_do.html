@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block page-title %}Messages{% endblock %}
+{% block page-title %}To Do{% endblock %}
 
 
 
@@ -10,7 +10,12 @@
     <main class="hoc container clear">
         <div id="comments">
             <h2>To Do list:</h2>
-            <p>Click on date to read whole text.</p>
+
+            {% if to_do_list.count == 0%}
+                {% if not done %}<h6>No Pending Tasks to display.</h6>{% endif %}
+                {% if done %}<h6>No Done Tasks to display.</h6>{% endif %}
+            {% endif %}
+
             {% for item in to_do_list %}
             <ul>
               <li>
@@ -28,6 +33,7 @@
                       {% if done %}<div class="one_quarter">Done on {{ item.time_when_done }}</div>{% endif %}
                   </div>
 
+                <footer><a href="delete/{{ item.id }}">Delete Task &raquo;</a></footer>
 
                 </article>
               </li>
@@ -35,7 +41,7 @@
             {% endfor %}
             <div class="one_quarter first"><a href="{% url 'NewTask' %}">New Task &raquo;</a></div>
             {% if not done %}<div class="one_quarter first"><a href="{% url 'Done' %}">View Completed Tasks &raquo;</a></div>
-            {% else %} <div class="one_quarter first"><a href="{% url 'ToDo' %}">View Incomplete Tasks &raquo;</a></div>
+            {% else %} <div class="one_quarter first"><a href="{% url 'ToDo' %}">View Pending Tasks &raquo;</a></div>
             {% endif %}
 
         </div>

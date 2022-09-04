@@ -84,8 +84,11 @@ def profile(request):
 
 
 def edit_profile(request):
-    user = User.objects.get(username=request.user.username)
-    avatar_db = Profile.objects.get(user=user)
+    user = User.objects.get(id=request.user.id)
+    try:
+        avatar_db = Profile.objects.get(user=user)
+    except:
+        avatar_db = Profile(user=user)
 
     if request.method == 'POST':
         form = ProfileUpdate(request.POST, request.FILES)

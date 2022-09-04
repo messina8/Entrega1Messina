@@ -12,10 +12,7 @@ from login.models import Profile
 
 @login_required
 def messages(request):
-    received_messages = Message.objects.filter(target=request.user.id)
-    for i in received_messages:
-
-        pass
+    received_messages = Message.objects.filter(target=request.user.id).order_by('-time')
     data = {'received_messages': received_messages}
 
     return render(request, 'chat/messages.html', data)
@@ -44,14 +41,14 @@ def send_message(request, user_id):
     else:
         form = SendMessageForm()
         context = {'form': form, 'target_name': target.username}
-        return render(request, 'chat/send_message.html', context)
 
-    context = {'form': SendMessageForm(), 'target_name': target.username}
     return render(request, 'chat/send_message.html', context)
 
 
-def read_message(request):
-    pass
+def delete_message(request, message_id):
+    Message.objects.get(id=message_id).delete()
+    return render(request, 'biblioteca/clean_base.html', {'message': f'Message successfully deleted',
+                                                          'url': '../'})
 
 
 def reviews(request):  # will get done if I have enough time

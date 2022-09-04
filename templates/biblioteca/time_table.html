@@ -1,0 +1,38 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Clients{% endblock %}
+
+{% block forms %}
+
+
+    <main class="hoc container clear">
+
+    <h1>Table(s)</h1>
+      <div class="scrollable">
+        <table>
+            <thead>
+            <tr>
+                <th>Time</th>
+                <th>Activity</th>
+                <th>Done</th>
+            </tr>
+            </thead>
+            {% for item in schedule %}
+            <tbody>
+                <tr>
+                    <td>{{ item.time }}</td>
+                    <td>{{ item.activity }}</td>
+                    <td><input type="checkbox" ></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+      </div>
+
+    <li class="one_half first"><footer><a href="{% url 'NewBook' %}">New Book &raquo;</a></footer></li>
+
+    </main>
+
+{% endblock %}

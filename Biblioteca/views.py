@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from Biblioteca.models import Book, Invoices, Clients, OwnedBooks, JournalEntry, ToDoItem
+from Biblioteca.models import Book, Invoices, Clients, OwnedBooks, JournalEntry, ToDoItem, TimeTable
 from Biblioteca.forms import *
 
 
@@ -207,6 +207,7 @@ def done(request):
     return render(request, 'biblioteca/to_do.html', {'to_do_list': to_do_list, 'done': True})
 
 
+@login_required
 def new_task(request):
     if request.method == 'POST':
         form = NewTaskForm(request.POST)
@@ -226,18 +227,28 @@ def new_task(request):
     return render(request, 'biblioteca/clean_base.html', {'form': NewTaskForm, 'hide': True})
 
 
-@login_required()
+@login_required
 def set_task_done(request, task_id):
     item = ToDoItem.objects.get(id=task_id)
     item.done = True
     item.time_when_done = datetime.datetime.now()
     item.save()
     return render(request, 'biblioteca/clean_base.html',
-                  {'message': f'The task {item.task} was successfully set as read.', 'url': '/management/to_do/'})
+                  {'message': f'The task "{item.task}" was successfully set as done.', 'url': '/management/to_do/'})
+
+
+def delete_task(request, task_id):
+    task = ToDoItem.objects.get(id=task_id)
+    task_name = task.task
+    task.delete()
+    return render(request, 'biblioteca/clean_base.html', {'message': f'Task "{task_name}" successfully deleted',
+                                                          'url': '../'})
+
 
 
 @login_required
 def timetable(request):
-    return render(request, 'home.html', {'welcome_message': f'Not yet, buddy. Give me some time.'})
+    table = TimeTable.objects.filter(user=request.user.id)
+    return render(request, 'biblioteca/time_table.html', {'schedule': table})
 
 

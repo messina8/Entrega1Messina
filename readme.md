@@ -12,6 +12,11 @@ LeoElProfe - leo123456
 UsuarioCoder - Coder1234 -> Superusuario a disposición del Profesor/Tutor.
 
 
+El link al Testing es el siguiente: 
+https://docs.google.com/spreadsheets/d/1yozphlx5Au3RoR9OVoKGcOzxt18UFJksihyISgP4cjk/edit?usp=sharing
+
+El link al video es el sigiente:
+
 
 
 V 0.1: Bienvenidos a El Rio Management Web App.

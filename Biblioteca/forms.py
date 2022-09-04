@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from django import forms
 
@@ -34,13 +34,17 @@ class OwnedBookForm(forms.Form):
 
 
 class NewJournalEntryForm(forms.Form):
-    date = forms.DateField(label='Entry Date:', required=False, initial=datetime.datetime.today().strftime('%Y-%m-%d'),
+    date = forms.DateField(label='Entry Date:', required=False, initial=datetime.today().strftime('%Y-%m-%d'),
                            widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
     text = forms.CharField(label='Entry Text:', widget=forms.Textarea)
 
 
 class NewTaskForm(forms.Form):
     task = forms.CharField(label='Task:')
-    due = forms.DateTimeField(label='Due:', required=False, initial=datetime.datetime.now())
+    due = forms.DateTimeField(label='Due:', required=False, initial=datetime.now())
     description = forms.CharField(label='Description:', required=False)
 
+
+class NewHabitForm(forms.Form):
+    activity = forms.CharField(label='Activity:')
+    time = forms.TimeField(label='Time:', initial=datetime.now().strftime('%H:%M'))

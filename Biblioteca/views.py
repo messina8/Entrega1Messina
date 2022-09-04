@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -131,7 +131,7 @@ def new_owned_book(request):
 def set_book_read(request, book_id):
     book = OwnedBooks.objects.get(id=book_id)
     book.read = True
-    book.read_date = datetime.datetime.today().strftime('%Y-%m-%d')
+    book.read_date = datetime.today().strftime('%Y-%m-%d')
     book.save()
     return render(request, 'biblioteca/clean_base.html', {'message': f'The book {book.title} by {book.author}'
                                                                      f' was successfully set as read.',
@@ -193,6 +193,15 @@ def read_entry(request, entry_id):
     return render(request, 'biblioteca/read_entry.html', {'entry': text[0]})
 
 
+@login_required()
+def delete_entry(request, entry_id):
+    entry = JournalEntry.objects.get(id=entry_id)
+    entry_date = entry.date
+    entry.delete()
+    return render(request, 'biblioteca/clean_base.html', {'message': f'The entry for "{entry_date}" was successfully '
+                                                                     f'deleted', 'url': '../'})
+
+
 @login_required
 def to_do(request):
     to_do_list = ToDoItem.objects.filter(user=request.user, done=False)
@@ -221,9 +230,9 @@ def new_task(request):
 
             return redirect(to_do)
         else:
-            render(request, 'biblioteca/clean_base.html', {'form': form,
-                                                           'message': 'Date format incorrect./nPlease use yyyy-mm-dd',
-                                                           'hide': True})
+            return render(request, 'biblioteca/clean_base.html', {'form': form,
+                                                                  'message': 'Date format incorrect. Please use yyyy-mm-dd',
+                                                                  'hide': True})
     return render(request, 'biblioteca/clean_base.html', {'form': NewTaskForm, 'hide': True})
 
 
@@ -231,7 +240,7 @@ def new_task(request):
 def set_task_done(request, task_id):
     item = ToDoItem.objects.get(id=task_id)
     item.done = True
-    item.time_when_done = datetime.datetime.now()
+    item.time_when_done = datetime.now()
     item.save()
     return render(request, 'biblioteca/clean_base.html',
                   {'message': f'The task "{item.task}" was successfully set as done.', 'url': '/management/to_do/'})
@@ -245,10 +254,38 @@ def delete_task(request, task_id):
                                                           'url': '../'})
 
 
-
 @login_required
 def timetable(request):
     table = TimeTable.objects.filter(user=request.user.id)
     return render(request, 'biblioteca/time_table.html', {'schedule': table})
 
 
+def new_habit(request):
+    if request.method == 'POST':
+        form = NewHabitForm(request.POST)
+
+        if form.is_valid():
+            habit = form.cleaned_data
+            new = TimeTable(time=habit['time'], activity=habit['activity'],
+                            user=request.user)
+            try:
+                new.save()
+            except:
+                render(request, 'biblioteca/clean_base.html', {'form': form,
+                                                               'message': 'You already have an activity at that time.',
+                                                               'hide': True})
+
+            return redirect(timetable)
+        else:
+            return render(request, 'biblioteca/clean_base.html', {'form': form,
+                                                                  'message': 'Time format incorrect. Please use hh-mm',
+                                                                  'hide': True})
+    return render(request, 'biblioteca/clean_base.html', {'form': NewHabitForm, 'hide': True})
+
+
+def delete_habit(request, habit_id):
+    habit = TimeTable.objects.get(id=habit_id)
+    habit_name = habit.activity
+    habit.delete()
+    return render(request, 'biblioteca/clean_base.html', {'message': f'Habit "{habit.activity}" successfully deleted',
+                                                          'url': '../'})

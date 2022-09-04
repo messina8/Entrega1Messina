@@ -64,13 +64,14 @@ Licence URI: https://www.os-templates.com/template-terms
             <li><a href="{% url 'ToDo' %}">To Do</a></li>
             <li><a href="{% url 'Timetable' %}">Time Tables</a></li>
             <li><a href="{% url 'Journal' %}">Journal</a></li>
+            {% if user.is_superuser %}
             <li><a class="drop">Legacy</a>
               <ul>
                 <li><a href="{% url 'Books' %}">Books</a></li>
                 <li><a href="{% url 'Clients' %}">Clients</a></li>
                 <li><a href="{% url 'Invoice' %}">Invoices</a></li>
               </ul>
-            </li>
+            </li>{% endif %}
           </ul>
         </li>
         {% if user.is_authenticated %}

@@ -16,8 +16,10 @@ El link al Testing es el siguiente:
 https://docs.google.com/spreadsheets/d/1yozphlx5Au3RoR9OVoKGcOzxt18UFJksihyISgP4cjk/edit?usp=sharing
 
 El link al video es el sigiente:
+https://drive.google.com/file/d/1GGlJyL7THA58FhEc8QYOazIsmqmKhaA6/view?usp=sharing
+(no sé si se puede ver online o hay que descargarlo, pido disculpas si el caso es el segundo.)
 
-
+creo que está todo terminado, y espero que les guste!
 
 V 0.1: Bienvenidos a El Rio Management Web App.
 

@@ -50,7 +50,7 @@ class ToDoItem(models.Model):
 
 
 class TimeTable(models.Model):
-    time = models.TimeField(unique=True)
+    time = models.TimeField()
     activity = models.CharField(max_length=40)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

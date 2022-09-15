@@ -4,6 +4,6 @@ from MeliAPI import views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('prices/', views.prices, name='Precio'),
+    path('prices/', views.prices, name='Prices'),
 
 ]

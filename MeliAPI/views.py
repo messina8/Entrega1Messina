@@ -1,3 +1,4 @@
+import urllib.parse
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -16,9 +17,8 @@ def prices(request):
             price_dict = {}
             results = response.json()
             for element in results['results']:
-                name = apirequests.get('https://api.mercadolibre.com/users/' + str(element['seller']['id']))
-                name = name.json()['nickname']
-                price_dict[name] = element['price']
+                seller_name = urllib.parse.unquote(str(element['seller']['permalink'])).split('/')[3].replace('+', ' ')
+                price_dict[seller_name] = element['price']
 
             context = {'message': search, 'results': price_dict, 'form': form, 'hide': True}
             return render(request, 'MeliAPI/prices.html', context)

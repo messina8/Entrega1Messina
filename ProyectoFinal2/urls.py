@@ -26,6 +26,7 @@ urlpatterns = [
     path('management/', include('Biblioteca.urls')),
     path('user/', include('login.urls')),
     path('chat/', include('chat.urls')),
+    path('meli/', include('MeliAPI.urls'))
 
 ]
 

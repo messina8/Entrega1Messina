@@ -1,0 +1,32 @@
+{% extends "formbase.html" %}
+
+{% load static %}
+
+{% block page-title %}Clients{% endblock %}
+
+{% block forms %}
+
+
+    <main class="hoc container clear">
+
+
+        {{ message }}
+
+        {{ results }}
+
+
+        <form method="get">
+        {{ form.as_p }}
+
+        {% if form %}
+        <input type="submit" value="Submit">
+        {% endif %}
+        </form>
+
+        {% if not hide %}
+        <footer><a href="{{ url }}">&laquo; Go back</a></footer>
+        {% endif %}
+
+    </main>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.contrib import admin
+
 from django.urls import path
 from login import views
 from django.contrib.auth.views import LogoutView

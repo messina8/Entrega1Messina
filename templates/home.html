@@ -11,352 +11,374 @@ Licence URI: https://www.os-templates.com/template-terms
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 <head>
     {% load static %}
-<title>El Rio</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href={% static "nekmit/layout/styles/layout.css" %} rel="stylesheet" type="text/css" media="all">
+    <title>El Rio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href={% static "nekmit/layout/styles/layout.css" %} rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay padtop" style="background-image:url(https://i0.wp.com/baballa.com/wp-content/uploads/2021/07/susan-q-yin-2JIvboGLeho-unsplash.jpg?resize=768%2C512{# {% static 'nekmit\images\demo\backgrounds\01.png' %} #});">
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <header id="header" class="hoc clear">
-    <div id="logo" class="fl_left">
-      <!-- ################################################################################################ -->
-      <h1><a href="{% url 'Home' %}">El Rio Management</a></h1>
-      <!-- ################################################################################################ -->
+<div class="bgded overlay padtop"
+     style="background-image:url(https://i0.wp.com/baballa.com/wp-content/uploads/2021/07/susan-q-yin-2JIvboGLeho-unsplash.jpg?resize=768%2C512
+             {# {% static 'nekmit\images\demo\backgrounds\01.png' %} #});">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <header id="header" class="hoc clear">
+        <div id="logo" class="fl_left">
+            <!-- ################################################################################################ -->
+            <h1><a href="{% url 'Home' %}">El Rio Management</a></h1>
+            <!-- ################################################################################################ -->
+        </div>
+        <nav id="mainav" class="fl_right">
+            <!-- ################################################################################################ -->
+            <ul class="clear">
+                <li class="active"><a href="{% url 'Home' %}">Home</a></li>
+                {% if user.is_authenticated and user.is_superuser %}
+                    <li><a class="drop" href="#">Static HTMLs</a>
+                    <ul>
+                        <li><a href={% static "nekmit/pages/gallery.html" %}>Gallery</a></li>
+                        <li><a href={% static "nekmit/pages/full-width.html" %}>Full Width</a></li>
+                        <li><a href={% static "nekmit/pages/sidebar-left.html" %}>Sidebar Left</a></li>
+                        <li><a href={% static "nekmit/pages/sidebar-right.html" %}>Sidebar Right</a></li>
+                        <li><a href={% static "nekmit/pages/basic-grid.html" %}>Basic Grid</a></li>
+                        <li><a href={% static "nekmit/pages/font-icons.html" %}>Font Icons</a></li>
+                    </ul>
+                {% endif %}
+                <li><a class="drop" href="#">Productivity</a>
+                    <ul>
+                        <li><a href="{% url 'OwnedBooks' %}">Owned Books</a></li>
+                        <li><a href="{% url 'ToDo' %}">To Do</a></li>
+                        <li><a href="{% url 'Timetable' %}">Time Tables</a></li>
+                        <li><a href="{% url 'Journal' %}">Journal</a></li>
+                        <li><a href="{% url 'Prices' %}">Prices</a></li>
+                        {% if user.is_superuser %}
+                            <li><a class="drop">Legacy</a>
+                                <ul>
+                                    <li><a href="{% url 'Books' %}">Books</a></li>
+                                    <li><a href="{% url 'Clients' %}">Clients</a></li>
+                                    <li><a href="{% url 'Invoice' %}">Invoices</a></li>
+                                </ul>
+                            </li> {% endif %}
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'Messages' %}">Messages </a></li>
+                    <li><a href="{% url 'Profile' %}">Profile</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'Login' %}">Log In</a></li>
+                {% else %}
+                    <li><a href="{% url 'Logout' %}">Log Out</a></li>
+                {% endif %}
+            </ul>
+            <!-- ################################################################################################ -->
+        </nav>
+    </header>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div id="pageintro" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <article>
+            <h3 class="heading">El Rio Management</h3>
+            <p>{{ welcome_message }}</p>
+            {% if not user.is_authenticated %}
+                <footer>
+                    <ul class="nospace inline pushright">
+                        <li><a class="btn" href="{% url 'Login' %}">Log in</a></li>
+                        <li><a class="btn inverse" href="{% url 'Register' %}">Sign in</a></li>
+                    </ul>
+                </footer>
+            {% endif %}
+        </article>
+        <!-- ################################################################################################ -->
     </div>
-    <nav id="mainav" class="fl_right">
-      <!-- ################################################################################################ -->
-      <ul class="clear">
-        <li class="active"><a href="{% url 'Home' %}">Home</a></li>
-        {% if user.is_authenticated and user.is_superuser %}
-          <li><a class="drop" href="#">Static HTMLs</a>
-          <ul>
-            <li><a href={% static "nekmit/pages/gallery.html" %}>Gallery</a></li>
-            <li><a href={% static "nekmit/pages/full-width.html" %}>Full Width</a></li>
-            <li><a href={% static "nekmit/pages/sidebar-left.html" %}>Sidebar Left</a></li>
-            <li><a href={% static "nekmit/pages/sidebar-right.html" %}>Sidebar Right</a></li>
-            <li><a href={% static "nekmit/pages/basic-grid.html" %}>Basic Grid</a></li>
-            <li><a href={% static "nekmit/pages/font-icons.html" %}>Font Icons</a></li>
-          </ul>
-              {% endif %}
-        <li><a class="drop" href="#">Productivity</a>
-          <ul>
-            <li><a href="{% url 'OwnedBooks' %}">Owned Books</a></li>
-            <li><a href="{% url 'ToDo' %}">To Do</a></li>
-            <li><a href="{% url 'Timetable' %}">Time Tables</a></li>
-            <li><a href="{% url 'Journal' %}">Journal</a></li>
-            <li><a href="{% url 'Prices' %}">Prices</a></li>
-              {% if user.is_superuser %}
-            <li><a class="drop">Legacy</a>
-              <ul>
-                <li><a href="{% url 'Books' %}">Books</a></li>
-                <li><a href="{% url 'Clients' %}">Clients</a></li>
-                <li><a href="{% url 'Invoice' %}">Invoices</a></li>
-              </ul>
-            </li> {% endif %}
-          </ul>
-        </li>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'Messages' %}">Messages </a></li>
-        <li><a href="{% url 'Profile' %}">Profile</a></li>
-        {% endif %}
-        {% if not user.is_authenticated %}
-          <li><a href="{% url 'Login' %}">Log In</a></li>
-        {% else %}
-          <li><a href="{% url 'Logout' %}">Log Out</a></li>
-        {% endif %}
-      </ul>
-      <!-- ################################################################################################ -->
-    </nav>
-  </header>
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <!-- ################################################################################################ -->
-  <div id="pageintro" class="hoc clear">
     <!-- ################################################################################################ -->
-    <article>
-      <h3 class="heading">El Rio Management</h3>
-      <p>{{ welcome_message }}</p>
-        {% if not user.is_authenticated %}
-      <footer>
-        <ul class="nospace inline pushright">
-          <li><a class="btn" href="{% url 'Login' %}">Log in</a></li>
-          <li><a class="btn inverse" href="{% url 'Register' %}">Sign in</a></li>
-        </ul>
-      </footer>
-        {% endif %}
-    </article>
-    <!-- ################################################################################################ -->
-  </div>
-  <!-- ################################################################################################ -->
 </div>
 <!-- End Top Background Image Wrapper -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row1">
-  <section id="ctdetails" class="hoc clear">
-    <!-- ################################################################################################ -->
-    <ul class="nospace clear">
-      <li class="one_quarter first">
-        <div class="block clear"><a href="{% url 'AboutUs' %}"><i class="fas fa-handshake"></i></a> <span><strong>About us:</strong>Get to know us </span></div>
-      </li>
-      <li class="one_quarter">
-        <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Mail us:</strong> info@elriosoftware.com</span></div>
-      </li>
-      <li class="one_quarter">
-        <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> Mon. - Fri.:</strong> 09:30am - 19:30pm</span></div>
-      </li>
-      <li class="one_quarter">
-        <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>Come visit us:</strong> Directions to <a href="https://goo.gl/maps/xt3mFjN9GfcAoPJv7">our location</a></span></div>
-      </li>
-    </ul>
-    <!-- ################################################################################################ -->
-  </section>
+    <section id="ctdetails" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <ul class="nospace clear">
+            <li class="one_quarter first">
+                <div class="block clear"><a href="{% url 'AboutUs' %}"><i class="fas fa-handshake"></i></a>
+                    <span><strong>About us:</strong>Get to know us </span></div>
+            </li>
+            <li class="one_quarter">
+                <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Mail us:</strong> info@elriosoftware.com</span>
+                </div>
+            </li>
+            <li class="one_quarter">
+                <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a>
+                    <span><strong> Mon. - Fri.:</strong> 09:30am - 19:30pm</span></div>
+            </li>
+            <li class="one_quarter">
+                <div class="block clear"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>Come visit us:</strong> Directions to <a
+                        href="https://goo.gl/maps/xt3mFjN9GfcAoPJv7">our location</a></span></div>
+            </li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row3">
-  <main class="hoc container clear">
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <section id="services">
-      <div class="sectiontitle">
-        <p class="nospace font-xs"></p>
-        <h6 class="heading">Time Management Services</h6>
-      </div>
-      <ul class="nospace group grid-2">
-          {% if user.is_superuser %}
-        <li class="one_third first">
-          <article><a href="{% url 'Books' %}"><i class="fas fa-book-open"></i></a>
-            <h6 class="heading">Books</h6>
-            <p>Manage the books from you bookshop (LEGACY FEATURE)</p>
-            <footer><a href="{% url 'Books' %}">More Details &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article><a href="{% url 'Clients' %}"><i class="fas fa-user"></i></a>
-            <h6 class="heading">Clients</h6>
-            <p>Manage the clients from you bookshop (LEGACY FEATURE)</p>
-            <footer><a href="{% url 'Clients' %}">More Details &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article><a href="{% url 'Invoice' %}"><i class="fas fa-file-invoice-dollar"></i></a>
-            <h6 class="heading">Invoices</h6>
-            <p>Manage the invoices from you bookshop (LEGACY FEATURE)</p>
-            <footer><a href="{% url 'Invoice' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-          {% endif %}
-        <li class="one_half first">
-          <article><a href="{% url 'OwnedBooks' %}"><i class="fas fa-book"></i></a>
-            <h6 class="heading">Owned Books</h6>
-            <p>Manage your owned books. Set read date and keep track!</p>
-            <footer><a href="{% url 'OwnedBooks' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_half">
-          <article><a href="{% url 'ToDo' %}"><i class="fas fa-clipboard-list"></i></a>
-            <h6 class="heading">To Do List</h6>
-            <p>Make a simple To Do list. Set times activities and goals..</p>
-            <footer><a href="{% url 'ToDo' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_half first">
-          <article><a href="{% url 'Timetable' %}"><i class="fas fa-grip-vertical"></i></a>
-            <h6 class="heading">Time Table</h6>
-            <p>Manage your daily routine with a simple Time Table.</p>
-            <footer><a href="{% url 'Timetable' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-          <li class="one_half">
-          <article><a href="{% url 'Journal' %}"><i class="fas fa-pen-fancy"></i></a>
-            <h6 class="heading">Journal</h6>
-            <p>Keep track of your thoughts, feelings, activities, anything you believe needs recording.</p>
-            <footer><a href="{% url 'Journal' %}">Go &raquo;</a></footer>
-          </article>
-        </li>
-      </ul>
-    </section>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-    <div class="clear"></div>
-  </main>
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <section id="services">
+            <div class="sectiontitle">
+                <p class="nospace font-xs"></p>
+                <h6 class="heading">Time Management Services</h6>
+            </div>
+            <ul class="nospace group grid-2">
+                {% if user.is_superuser %}
+                    <li class="one_third first">
+                        <article><a href="{% url 'Books' %}"><i class="fas fa-book-open"></i></a>
+                            <h6 class="heading">Books</h6>
+                            <p>Manage the books from you bookshop (LEGACY FEATURE)</p>
+                            <footer><a href="{% url 'Books' %}">More Details &raquo;</a></footer>
+                        </article>
+                    </li>
+                    <li class="one_third">
+                        <article><a href="{% url 'Clients' %}"><i class="fas fa-user"></i></a>
+                            <h6 class="heading">Clients</h6>
+                            <p>Manage the clients from you bookshop (LEGACY FEATURE)</p>
+                            <footer><a href="{% url 'Clients' %}">More Details &raquo;</a></footer>
+                        </article>
+                    </li>
+                    <li class="one_third">
+                        <article><a href="{% url 'Invoice' %}"><i class="fas fa-file-invoice-dollar"></i></a>
+                            <h6 class="heading">Invoices</h6>
+                            <p>Manage the invoices from you bookshop (LEGACY FEATURE)</p>
+                            <footer><a href="{% url 'Invoice' %}">Go &raquo;</a></footer>
+                        </article>
+                    </li>
+                {% endif %}
+                <li class="one_half first">
+                    <article><a href="{% url 'OwnedBooks' %}"><i class="fas fa-book"></i></a>
+                        <h6 class="heading">Owned Books</h6>
+                        <p>Manage your owned books. Set read date and keep track!</p>
+                        <footer><a href="{% url 'OwnedBooks' %}">Go &raquo;</a></footer>
+                    </article>
+                </li>
+                <li class="one_half">
+                    <article><a href="{% url 'ToDo' %}"><i class="fas fa-clipboard-list"></i></a>
+                        <h6 class="heading">To Do List</h6>
+                        <p>Make a simple To Do list. Set times activities and goals..</p>
+                        <footer><a href="{% url 'ToDo' %}">Go &raquo;</a></footer>
+                    </article>
+                </li>
+                <li class="one_half first">
+                    <article><a href="{% url 'Timetable' %}"><i class="fas fa-grip-vertical"></i></a>
+                        <h6 class="heading">Time Table</h6>
+                        <p>Manage your daily routine with a simple Time Table.</p>
+                        <footer><a href="{% url 'Timetable' %}">Go &raquo;</a></footer>
+                    </article>
+                </li>
+                <li class="one_half">
+                    <article><a href="{% url 'Journal' %}"><i class="fas fa-pen-fancy"></i></a>
+                        <h6 class="heading">Journal</h6>
+                        <p>Keep track of your thoughts, feelings, activities, anything you believe needs recording.</p>
+                        <footer><a href="{% url 'Journal' %}">Go &raquo;</a></footer>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        <!-- ################################################################################################ -->
+        <!-- / main body -->
+        <div class="clear"></div>
+    </main>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="bgded overlay" style="background-image:url({% static 'nekmit/images/demo/backgrounds/01.png' %});">
-  <section class="hoc container clear">
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <p class="nospace font-xs">Nisi velit nec turpis nullam vitae</p>
-      <h6 class="heading">Quam nunc ut elit nunc molestie</h6>
-    </div>
-    <article id="points" class="group">
-      <div class="two_third first">
-        <h6 class="heading">Sapien tempor placerat</h6>
-        <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu sed tempus tempor orci vestibulum volutpat eleifend arcu nunc vitae lacus sit amet sem consequat ullamcorper vivamus quis risus ut turpis sagittis venenatis.</p>
-        <p>Volutpat et aliquam sed magna duis nibh dui porttitor eu rhoncus ut convallis eu eros in condimentum placerat.</p>
-        <ul class="nospace group">
-          <li><span>1</span> Nulla bibendum in erat</li>
-          <li><span>2</span> Enim interdum a aliquam</li>
-          <li><span>3</span> Sed commodo bibendum justo</li>
-          <li><span>4</span> Sed pretium elit sed</li>
-          <li><span>5</span> Nisi aliquam dolor urna</li>
-          <li><span>6</span> Interdum ut dignissim eget</li>
-          <li><span>7</span> Sagittis eget eros integer</li>
-          <li><span>8</span> Velit mi facilisis eget</li>
-        </ul>
-      </div>
-      <div class="one_third last"><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x394.png" %} alt=""></a></div>
-    </article>
-    <!-- ################################################################################################ -->
-  </section>
+    <section class="hoc container clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <p class="nospace font-xs">Nisi velit nec turpis nullam vitae</p>
+            <h6 class="heading">Quam nunc ut elit nunc molestie</h6>
+        </div>
+        <article id="points" class="group">
+            <div class="two_third first">
+                <h6 class="heading">Sapien tempor placerat</h6>
+                <p>Luctus mauris lectus elementum nulla ac consectetuer sapien leo et arcu sed tempus tempor orci
+                    vestibulum volutpat eleifend arcu nunc vitae lacus sit amet sem consequat ullamcorper vivamus quis
+                    risus ut turpis sagittis venenatis.</p>
+                <p>Volutpat et aliquam sed magna duis nibh dui porttitor eu rhoncus ut convallis eu eros in condimentum
+                    placerat.</p>
+                <ul class="nospace group">
+                    <li><span>1</span> Nulla bibendum in erat</li>
+                    <li><span>2</span> Enim interdum a aliquam</li>
+                    <li><span>3</span> Sed commodo bibendum justo</li>
+                    <li><span>4</span> Sed pretium elit sed</li>
+                    <li><span>5</span> Nisi aliquam dolor urna</li>
+                    <li><span>6</span> Interdum ut dignissim eget</li>
+                    <li><span>7</span> Sagittis eget eros integer</li>
+                    <li><span>8</span> Velit mi facilisis eget</li>
+                </ul>
+            </div>
+            <div class="one_third last"><a class="imgover" href="#"><img
+                    src={% static "nekmit/images/demo/348x394.png" %} alt=""></a></div>
+        </article>
+        <!-- ################################################################################################ -->
+    </section>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row2">
-  <section class="hoc container clear">
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <p class="nospace font-xs">Odio duis ut est quis nisl consequat</p>
-      <h6 class="heading">Gravida donec non erat eget</h6>
-    </div>
-    <ul id="latest" class="nospace group sd-third">
-      <li class="one_third first">
-        <article>
-          <figure><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x261.png"%} alt=""></a>
-            <figcaption>
-              <ul class="nospace meta clear">
-                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
-                <li>
-                  <time datetime="2045-04-06T08:15+00:00">06 Apr 2045</time>
-                </li>
-              </ul>
-              <h6 class="heading"><a href="#">Elit pellentesque dapibus</a></h6>
-            </figcaption>
-          </figure>
-          <p>Justo massa adipiscing a convallis ultricies luctus et dolor aliquam nulla aenean facilisis ullamcorper diam nunc pede nulla iaculis quis lacinia ac adipiscing.</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article>
-          <figure><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
-            <figcaption>
-              <ul class="nospace meta clear">
-                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
-                <li>
-                  <time datetime="2045-04-05T08:15+00:00">05 Apr 2045</time>
-                </li>
-              </ul>
-              <h6 class="heading"><a href="#">Quis ligula morbi quam</a></h6>
-            </figcaption>
-          </figure>
-          <p>Semper mattis nulla cursus lorem ut gravida tempor massa massa porta libero at scelerisque et arcu nulla facilisi aenean fringilla imperdiet felis mauris.</p>
-        </article>
-      </li>
-      <li class="one_third">
-        <article>
-          <figure><a class="imgover" href="#"><img src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
-            <figcaption>
-              <ul class="nospace meta clear">
-                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
-                <li>
-                  <time datetime="2045-04-04T08:15+00:00">04 Apr 2045</time>
-                </li>
-              </ul>
-              <h6 class="heading"><a href="#">Hendrerit ligula eu diam</a></h6>
-            </figcaption>
-          </figure>
-          <p>Ac lectus sed ultricies augue congue nibh donec convallis elementum leo nullam dignissim varius ante fusce pharetra sodales arcu sed rutrum ipsum a ipsum.</p>
-        </article>
-      </li>
-    </ul>
-    <!-- ################################################################################################ -->
-  </section>
+    <section class="hoc container clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <p class="nospace font-xs">Odio duis ut est quis nisl consequat</p>
+            <h6 class="heading">Gravida donec non erat eget</h6>
+        </div>
+        <ul id="latest" class="nospace group sd-third">
+            <li class="one_third first">
+                <article>
+                    <figure><a class="imgover" href="#"><img
+                            src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
+                        <figcaption>
+                            <ul class="nospace meta clear">
+                                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
+                                <li>
+                                    <time datetime="2045-04-06T08:15+00:00">06 Apr 2045</time>
+                                </li>
+                            </ul>
+                            <h6 class="heading"><a href="#">Elit pellentesque dapibus</a></h6>
+                        </figcaption>
+                    </figure>
+                    <p>Justo massa adipiscing a convallis ultricies luctus et dolor aliquam nulla aenean facilisis
+                        ullamcorper diam nunc pede nulla iaculis quis lacinia ac adipiscing.</p>
+                </article>
+            </li>
+            <li class="one_third">
+                <article>
+                    <figure><a class="imgover" href="#"><img
+                            src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
+                        <figcaption>
+                            <ul class="nospace meta clear">
+                                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
+                                <li>
+                                    <time datetime="2045-04-05T08:15+00:00">05 Apr 2045</time>
+                                </li>
+                            </ul>
+                            <h6 class="heading"><a href="#">Quis ligula morbi quam</a></h6>
+                        </figcaption>
+                    </figure>
+                    <p>Semper mattis nulla cursus lorem ut gravida tempor massa massa porta libero at scelerisque et
+                        arcu nulla facilisi aenean fringilla imperdiet felis mauris.</p>
+                </article>
+            </li>
+            <li class="one_third">
+                <article>
+                    <figure><a class="imgover" href="#"><img
+                            src={% static "nekmit/images/demo/348x261.png" %} alt=""></a>
+                        <figcaption>
+                            <ul class="nospace meta clear">
+                                <li><i class="fas fa-user"></i> <a href="#">Admin</a></li>
+                                <li>
+                                    <time datetime="2045-04-04T08:15+00:00">04 Apr 2045</time>
+                                </li>
+                            </ul>
+                            <h6 class="heading"><a href="#">Hendrerit ligula eu diam</a></h6>
+                        </figcaption>
+                    </figure>
+                    <p>Ac lectus sed ultricies augue congue nibh donec convallis elementum leo nullam dignissim varius
+                        ante fusce pharetra sodales arcu sed rutrum ipsum a ipsum.</p>
+                </article>
+            </li>
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row4">
-  <footer id="footer" class="hoc clear">
-    <!-- ################################################################################################ -->
-    <div class="one_quarter first">
-      <h6 class="heading">Praesent id aliquam</h6>
-      <p>Non tellus nec sapien lobortis lobortis mauris egestas massa ac cursus pellentesque leo risus convallis nulla et fringilla sapien magna sit amet magna aliquam tempus praesent sit amet neque sed lobortis nulla facilisi [<a href="#">&hellip;</a>]</p>
-      <ul class="faico clear">
-        <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-        <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
-        <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-        <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="heading">Rutrum amet sodales</h6>
-      <ul class="nospace linklist">
-        <li><a href="#">Nulla tincidunt magna</a></li>
-        <li><a href="#">Vel iaculis mollis mi</a></li>
-        <li><a href="#">Lacus tincidunt diam ac</a></li>
-        <li><a href="#">Varius purus justo pretium</a></li>
-        <li><a href="#">Nunc proin tortor elit</a></li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="heading">At feugiat in diam</h6>
-      <p class="nospace btmspace-15">In vestibulum dolor et augue fusce neque enim scelerisque at fermentum.</p>
-      <form action="#" method="post">
-        <fieldset>
-          <legend>Newsletter:</legend>
-          <input class="btmspace-15" type="text" value="" placeholder="Name">
-          <input class="btmspace-15" type="text" value="" placeholder="Email">
-          <button class="btn" type="submit" value="submit">Submit</button>
-        </fieldset>
-      </form>
-    </div>
-    <div class="one_quarter last">
-      <h6 class="heading">Sed imperdiet pharetra</h6>
-      <ul class="nospace linklist">
-        <li>
-          <article>
-            <h6 class="nospace font-x1"><a href="#">Massa nam nulla augue</a></h6>
-            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
-            <p class="nospace">Faucibus nec lacinia quis ornare a eros pellentesque in orci vitae</p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h6 class="nospace font-x1"><a href="#">Velit vehicula auctor</a></h6>
-            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
-            <p class="nospace">Pellentesque pulvinar vestibulum bibendum blandit lectus pretium</p>
-          </article>
-        </li>
-      </ul>
-    </div>
-    <!-- ################################################################################################ -->
-  </footer>
+    <footer id="footer" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <div class="one_quarter first">
+            <h6 class="heading">Praesent id aliquam</h6>
+            <p>Non tellus nec sapien lobortis lobortis mauris egestas massa ac cursus pellentesque leo risus convallis
+                nulla et fringilla sapien magna sit amet magna aliquam tempus praesent sit amet neque sed lobortis nulla
+                facilisi [<a href="#">&hellip;</a>]</p>
+            <ul class="faico clear">
+                <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+                <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+            </ul>
+        </div>
+        <div class="one_quarter">
+            <h6 class="heading">Rutrum amet sodales</h6>
+            <ul class="nospace linklist">
+                <li><a href="#">Nulla tincidunt magna</a></li>
+                <li><a href="#">Vel iaculis mollis mi</a></li>
+                <li><a href="#">Lacus tincidunt diam ac</a></li>
+                <li><a href="#">Varius purus justo pretium</a></li>
+                <li><a href="#">Nunc proin tortor elit</a></li>
+            </ul>
+        </div>
+        <div class="one_quarter">
+            <h6 class="heading">At feugiat in diam</h6>
+            <p class="nospace btmspace-15">In vestibulum dolor et augue fusce neque enim scelerisque at fermentum.</p>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Newsletter:</legend>
+                    <input class="btmspace-15" type="text" value="" placeholder="Name">
+                    <input class="btmspace-15" type="text" value="" placeholder="Email">
+                    <button class="btn" type="submit" value="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="one_quarter last">
+            <h6 class="heading">Sed imperdiet pharetra</h6>
+            <ul class="nospace linklist">
+                <li>
+                    <article>
+                        <h6 class="nospace font-x1"><a href="#">Massa nam nulla augue</a></h6>
+                        <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045
+                        </time>
+                        <p class="nospace">Faucibus nec lacinia quis ornare a eros pellentesque in orci vitae</p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <h6 class="nospace font-x1"><a href="#">Velit vehicula auctor</a></h6>
+                        <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April
+                            2045
+                        </time>
+                        <p class="nospace">Pellentesque pulvinar vestibulum bibendum blandit lectus pretium</p>
+                    </article>
+                </li>
+            </ul>
+        </div>
+        <!-- ################################################################################################ -->
+    </footer>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row5">
-  <div id="copyright" class="hoc clear">
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <!-- ################################################################################################ -->
-  </div>
+    <div id="copyright" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+        <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/"
+                                           title="Free Website Templates">OS Templates</a></p>
+        <!-- ################################################################################################ -->
+    </div>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->

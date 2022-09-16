@@ -9,11 +9,11 @@
     <main class="hoc container clear">
 
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-        {{ message }}
-        {{ form.as_p }}
+            {{ message }}
+            {{ form.as_p }}
 
-        <input type="submit" value="Submit">
-    </form>
+            <input type="submit" value="Submit">
+        </form>
 
     </main>
 

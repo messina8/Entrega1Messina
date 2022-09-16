@@ -6,20 +6,20 @@
 
 {% block forms %}
 
-  <main class="hoc container clear">
+    <main class="hoc container clear">
 
-    <div class="sectiontitle">
-      <p class="nospace font-xs">Profile</p>
-      <h6 class="heading">{{ username }}</h6>
-    </div>
+        <div class="sectiontitle">
+            <p class="nospace font-xs">Profile</p>
+            <h6 class="heading">{{ username }}</h6>
+        </div>
 
-    <img class="imgl borderedbox inspace-5" height="80px" src="/media/{{ picture }}" alt="avatar">
-      <p>{{ full_name }}</p>
-      <p>{{ email }}</p>
-      <p>Member since: {{ join_date }}</p>
-      <footer><a href="{% url 'EditProfile' %}">Edit &raquo;</a></footer>
-      <footer><a href="{% url 'ChangePassword' %}">Change Password &raquo;</a></footer>
+        <img class="imgl borderedbox inspace-5" height="80px" src="/media/{{ picture }}" alt="avatar">
+        <p>{{ full_name }}</p>
+        <p>{{ email }}</p>
+        <p>Member since: {{ join_date }}</p>
+        <footer><a href="{% url 'EditProfile' %}">Edit &raquo;</a></footer>
+        <footer><a href="{% url 'ChangePassword' %}">Change Password &raquo;</a></footer>
 
-  </main>
+    </main>
 
 {% endblock %}

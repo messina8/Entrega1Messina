@@ -10,7 +10,7 @@
             <p> Search results for: {{ search }}</p>
             <ul>
                 {% for client in clients %}
-                    <li>{{client.name}}, {{ client.surname }}</li>
+                    <li>{{ client.name }}, {{ client.surname }}</li>
                     <li>{{ client.adress }}</li>
                 {% endfor %}
             </ul>

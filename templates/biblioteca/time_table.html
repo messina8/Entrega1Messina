@@ -9,35 +9,37 @@
 
     <main class="hoc container clear">
 
-    <h1>Table(s)</h1>
-      <div class="scrollable">
-      {% if schedule.count > 0 %}
-        <table>
-            <thead>
-            <tr>
-                <th>Time</th>
-                <th>Activity</th>
-                <th>Done</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            {% for item in schedule %}
-            <tbody>
-                <tr>
-                    <td>{{ item.time }}</td>
-                    <td>{{ item.activity }}</td>
-                    <td><input type="checkbox" ></td>
-                    <td><a href="delete_habit/{{ item.id }}"> Go</a> </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-        </table>
-      {% else %}
-          <h6>No Habits in your Time Table Yet.</h6>
-      {% endif %}
-      </div>
+        <h1>Table(s)</h1>
+        <div class="scrollable">
+            {% if schedule.count > 0 %}
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Done</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    {% for item in schedule %}
+                        <tbody>
+                        <tr>
+                            <td>{{ item.time }}</td>
+                            <td>{{ item.activity }}</td>
+                            <td><input type="checkbox"></td>
+                            <td><a href="delete_habit/{{ item.id }}"> Go</a></td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h6>No Habits in your Time Table Yet.</h6>
+            {% endif %}
+        </div>
 
-    <li class="one_half first"><footer><a href="{% url 'NewHabit' %}">New Habit &raquo;</a></footer></li>
+        <li class="one_half first">
+            <footer><a href="{% url 'NewHabit' %}">New Habit &raquo;</a></footer>
+        </li>
 
     </main>
 

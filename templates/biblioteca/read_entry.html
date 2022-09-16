@@ -14,9 +14,15 @@
 
         <div class="center">
 
-        <div class="one_quarter first"><footer><a href="{% url 'Journal' %}">&laquo; Go back</a></footer></div>
-        <div class="two_quarter"><footer><a href="../journal/delete/{{ entry.id }}">Delete</a></footer></div>
-        <div class="one_quarter last"><footer><a href="../journal/edit/{{ entry.id }}">Edit &raquo;</a></footer></div>
+            <div class="one_quarter first">
+                <footer><a href="{% url 'Journal' %}">&laquo; Go back</a></footer>
+            </div>
+            <div class="two_quarter">
+                <footer><a href="../journal/delete/{{ entry.id }}">Delete</a></footer>
+            </div>
+            <div class="one_quarter last">
+                <footer><a href="../journal/edit/{{ entry.id }}">Edit &raquo;</a></footer>
+            </div>
 
         </div>
 

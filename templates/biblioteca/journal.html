@@ -12,31 +12,32 @@
             <h2>Journal Entries:</h2>
             <p>Click on date to read whole text.</p>
 
-            {% if entry_list.count == 0%}
+            {% if entry_list.count == 0 %}
                 <h6>No Entries to display.</h6>
             {% endif %}
 
             {% for day in entry_list %}
-            <ul>
-              <li>
-                <article>
-                  <header>
-{#                    <figure class="avatar"><img src={{}} alt=""></figure> tried to bring image URLs, but couldnt, should have made a custom user model.#}
-                    <address>
-                    <a href="../journal_entry/{{ day.id }}">{{ day.date }}</a>
-                    </address>
-                  </header>
-                  <div class="comcont">
-                    <p>{{ day.entry|slice:":100" }}{% if day.entry|length > 100 %}...
+                <ul>
+                    <li>
+                        <article>
+                            <header>
+                                {#                    <figure class="avatar"><img src={{}} alt=""></figure> tried to bring image URLs, but couldnt, should have made a custom user model.#}
+                                <address>
+                                    <a href="../journal_entry/{{ day.id }}">{{ day.date }}</a>
+                                </address>
+                            </header>
+                            <div class="comcont">
+                                <p>{{ day.entry|slice:":100" }}{% if day.entry|length > 100 %}...
 
-                    {% endif %} </p>
-                  </div>
+                                {% endif %} </p>
+                            </div>
 
-                </article>
-              </li>
-            </ul>
+                        </article>
+                    </li>
+                </ul>
             {% endfor %}
-            <footer><a href="{% url 'NewEntry' %}">New Entry &raquo;</a></footer> {# Not quite scalable, but works. #}
+            <footer><a href="{% url 'NewEntry' %}">New Entry &raquo;</a></footer>
+            {# Not quite scalable, but works. #}
         </div>
-</main>
+    </main>
 {% endblock %}

@@ -11,29 +11,30 @@
         <div id="comments">
             <h2>Messages</h2>
             <p>Click on name to reply</p>
-            {% if received_messages.count == 0%}
+            {% if received_messages.count == 0 %}
                 <h6>No Messages to display.</h6>
             {% endif %}
             {% for message in received_messages %}
-            <ul>
-              <li>
-                <article>
-                  <header>
-{#                    <figure class="avatar"><img src={{}} alt=""></figure> tried to bring image URLs, but couldnt, should have made a custom user model.#}
-                    <address>
-                    By <a href="../messages/send/{{ message.sender.id }}">{{ message.sender }}</a>
-                    </address>
-                    <time datetime="2045-04-06T08:20+00:00">{{ message.time }}</time>
-                  </header>
-                  <div class="comcont">
-                    <p>{{ message.message }}</p>
-                  </div>
-                    <footer><a href="delete/{{ message.id }}">Delete Message &raquo;</a></footer>
-                </article>
-              </li>
-            </ul>
+                <ul>
+                    <li>
+                        <article>
+                            <header>
+                                {#                    <figure class="avatar"><img src={{}} alt=""></figure> tried to bring image URLs, but couldnt, should have made a custom user model.#}
+                                <address>
+                                    By <a href="../messages/send/{{ message.sender.id }}">{{ message.sender }}</a>
+                                </address>
+                                <time datetime="2045-04-06T08:20+00:00">{{ message.time }}</time>
+                            </header>
+                            <div class="comcont">
+                                <p>{{ message.message }}</p>
+                            </div>
+                            <footer><a href="delete/{{ message.id }}">Delete Message &raquo;</a></footer>
+                        </article>
+                    </li>
+                </ul>
             {% endfor %}
-            <footer><a href="{% url 'Users' %}">New Message &raquo;</a></footer> {# Not quite scalable, but works. #}
+            <footer><a href="{% url 'Users' %}">New Message &raquo;</a></footer>
+            {# Not quite scalable, but works. #}
         </div>
-</main>
+    </main>
 {% endblock %}

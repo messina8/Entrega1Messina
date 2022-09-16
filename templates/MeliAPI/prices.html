@@ -6,26 +6,77 @@
 
 {% block forms %}
 
+    <style>
+        .result-box {
+            display: flex;
+        }
 
+        .result-info {
+            justify-content: center;
+            align-content: center;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: 500px 500px;
+        }
+    </style>
     <main class="hoc container clear">
 
-
-        {{ message }}
-
-        {{ results }}
-
-
         <form method="get">
-        {{ form.as_p }}
+            {{ form.as_p }}
 
-        {% if form %}
-        <input type="submit" value="Submit">
-        {% endif %}
+            {% if form %}
+                <input type="submit" value="Submit">
+            {% endif %}
         </form>
 
         {% if not hide %}
-        <footer><a href="{{ url }}">&laquo; Go back</a></footer>
+            <footer><a href="{{ url }}">&laquo; Go back</a></footer>
         {% endif %}
+        <h5>Resultados para: {{ message }}</h5>
+
+        <h2>Libros de tiendas oficiales</h2>
+
+        {% if results.official_stores %}
+            <div class="results">
+                {% for result in results.official_stores %}
+                    <div class="result-box">
+                        <img src="{{ result.image }}" alt="{{ result.title }}" width="100px" height="150px">
+                        <div class="result-info">
+                            <h6>{{ result.title }}</h6>
+                            <p>$ {{ result.price }}</p>
+                            <p>{{ result.seller }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <p>No hay resultados para tiendas oficiales</p>
+        {% endif %}
+
+        <h2>Libros usados</h2>
+
+        {% if results.used %}
+            <div class="results">
+                {% for result in results.used %}
+                    <div class="result-box">
+                        <img src="{{ result.image }}" alt="{{ result.title }}" width="100px" height="150px">
+                        <div class="result-info">
+                            <h6>{{ result.title }}</h6>
+                            <p>{{ result.price }}</p>
+                            <p>{{ result.seller }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <p>No hay resultados para usados</p>
+        {% endif %}
+
+
 
     </main>
 

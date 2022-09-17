@@ -16,16 +16,14 @@ def prices(request):
 
             price_dict = {}
 
-            official_stores_response = apirequests.get(
-                'https://api.mercadolibre.com/sites/MLA/search?category=MLA3025&official_store'
-                '=all&q=' + urllib.parse.quote(search))
+            official_response = apirequests.get('https://api.mercadolibre.com/sites/MLA/search?category='
+                                                'MLA3025&official_store=all&q=' + urllib.parse.quote(search))
             if used:
                 used_response = apirequests.get('https://api.mercadolibre.com/sites/MLA/search?category=MLA3025'
-                                                '&condition'
-                                                '=used&q=' + urllib.parse.quote(search))
+                                                '&condition=used&q=' + urllib.parse.quote(search))
                 price_dict['used'] = data_organizer(used_response.json())
 
-            price_dict['official_stores'] = data_organizer(official_stores_response.json())
+            price_dict['official_stores'] = data_organizer(official_response.json())
 
             context = {'message': search, 'results': price_dict, 'form': form, 'used': used}
             return render(request, 'MeliAPI/prices.html', context)

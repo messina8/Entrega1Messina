@@ -44,9 +44,11 @@ def data_organizer(response):
 
 
 def sales_manager(request):
-    forms = [VentaForm, CompraForm]
+    form_a = VentaForm
+    form_b = CompraForm
+
     if request.POST:
-        return render(request, 'MeliAPI/sales.html', )
+        return render(request, 'MeliAPI/sales.html', {'form_a': form_a, 'form_b': form_b})
 
     else:
-        return render(request, 'MeliAPI/sales.html')
+        return render(request, 'MeliAPI/sales.html', {'form_a': form_a, 'form_b': form_b})

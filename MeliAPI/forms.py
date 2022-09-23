@@ -7,7 +7,8 @@ class PriceCheckForm(forms.Form):
 
 
 class CompraForm(forms.Form):
-    pass
+    monto = forms.IntegerField(label='Monto')
+    recibo = forms.BooleanField(label='Recibo', widget=forms.CheckboxInput, required=False)
 
 
 class VentaForm(forms.Form):

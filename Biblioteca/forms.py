@@ -26,7 +26,7 @@ class InvoiceForm(forms.Form):
 class OwnedBookForm(forms.Form):
     isbn = forms.CharField(label='Isbn:', max_length=15)
     title = forms.CharField(label='Title:', max_length=60)
-    author = forms.CharField(label='Author::', max_length=60)
+    author = forms.CharField(label='Author:', max_length=60)
     theme = forms.CharField(label='Theme:', max_length=20)
     read = forms.BooleanField(label='Read:', widget=forms.CheckboxInput, required=False)
     read_date = forms.DateField(label='Read date:', required=False,

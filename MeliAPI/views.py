@@ -41,3 +41,12 @@ def data_organizer(response):
         data.append({"title": element['title'], 'price': element['price'], 'seller': seller_name,
                      'image': element['thumbnail']})
     return data
+
+
+def sales_manager(request):
+    forms = [VentaForm, CompraForm]
+    if request.POST:
+        return render(request, 'MeliAPI/sales.html', )
+
+    else:
+        return render(request, 'MeliAPI/sales.html')
